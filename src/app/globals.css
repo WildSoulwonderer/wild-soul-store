@@ -1,26 +1,70 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f4f0e8;
+  --foreground: #252820;
+
+  --wild-cream: #f4f0e8;
+  --wild-stone: #ded8cc;
+  --wild-forest: #263b32;
+  --wild-forest-dark: #192a23;
+  --wild-olive: #68705b;
+  --wild-earth: #9a684e;
+  --wild-charcoal: #252820;
+  --wild-soft: #7b796f;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  width: 100%;
+  min-width: 0;
+  overflow-x: hidden;
+  background: var(--background);
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
+  width: 100%;
+  min-width: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-wild-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--wild-forest);
+  color: var(--wild-cream);
+}
+.wild-serif {
+  font-family: var(--font-wild-serif), Georgia, "Times New Roman", serif;
+}
+
+.wild-serif-italic {
+  font-family: var(--font-wild-serif), Georgia, "Times New Roman", serif;
+  font-style: italic;
 }
