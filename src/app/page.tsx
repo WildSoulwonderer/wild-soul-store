@@ -76,7 +76,7 @@ export default function Home() {
               Shop
             </a>
 
-            <a href="#story" className="transition-opacity hover:opacity-60">
+            <a href="/our-story" className="transition-opacity hover:opacity-60">
               Our Story
             </a>
 
@@ -189,7 +189,7 @@ export default function Home() {
               </a>
 
               <a
-                href="#story"
+                href="/our-story"
                 className="border-b border-white/90 pb-1 text-xl font-normal text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.55)] transition-opacity hover:opacity-70"
                 style={serifFont}
               >
@@ -692,7 +692,7 @@ and taking five.
           <a href="#shop" className="transition-opacity hover:opacity-60">
             Shop
           </a>
-          <a href="#story" className="transition-opacity hover:opacity-60">
+          <a href="/our-story" className="transition-opacity hover:opacity-60">
             Our Story
           </a>
           <a href="#markets" className="transition-opacity hover:opacity-60">
