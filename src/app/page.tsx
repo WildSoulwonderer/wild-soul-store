@@ -408,6 +408,171 @@ export default function Home() {
   </div>
 </section>
 
+      {/* WILD SOUL FAVOURITES */}
+      <section className="bg-[var(--wild-cream)] px-6 py-24 sm:px-10 sm:py-28 lg:px-12 lg:py-32">
+        <div className="mx-auto max-w-[1450px]">
+          <div className="max-w-3xl">
+            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--wild-earth)] sm:text-sm">
+              Wild Soul Favourites
+            </p>
+
+            <h2
+              className="text-5xl font-normal leading-[0.95] text-[var(--wild-forest)] sm:text-6xl lg:text-7xl"
+              style={serifFont}
+            >
+              Already finding
+              <br />
+              their favourites.
+            </h2>
+
+            <p
+              className="mt-6 max-w-2xl text-2xl font-normal italic leading-snug text-[#6f5a4a] sm:text-3xl"
+              style={serifFont}
+            >
+              Some products just seem to find their people. These are a few
+              that have been picked up, tried and loved along the way.
+            </p>
+          </div>
+
+          <div className="mt-20 grid gap-x-10 gap-y-16 md:grid-cols-3">
+            {/* BUSH RELIEF */}
+            <article>
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src="/images/wild-soul-bush-relief.png"
+                  alt="Wild Soul Bush Relief recovery balm beside work gloves, fencing tools and a garden trowel"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-contain"
+                />
+              </div>
+
+              <div className="mt-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--wild-earth)]">
+                  Recovery Balm · 50g
+                </p>
+
+                <h3
+                  className="mt-3 text-3xl font-normal text-[var(--wild-forest)]"
+                  style={serifFont}
+                >
+                  Bush Relief
+                </h3>
+
+                <p className="mt-3 max-w-sm text-base leading-7 text-[var(--wild-soft)]">
+                  For tired hands, muscles and bodies after a day that asked a
+                  bit much.
+                </p>
+
+                <p
+                  className="mt-4 text-2xl text-[var(--wild-charcoal)]"
+                  style={serifFont}
+                >
+                  $24.95
+                </p>
+
+                <a
+                  href="#bush-relief"
+                  className="mt-5 inline-block border-b border-[var(--wild-earth)] pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--wild-earth)]"
+                >
+                  View Product
+                </a>
+              </div>
+            </article>
+
+            {/* MISTY GLEN */}
+            <article>
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src="/images/wild-soul-misty-glen.png"
+                  alt="Wild Soul Misty Glen recovery balm on weathered timber in soft misty light"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-contain"
+                />
+              </div>
+
+              <div className="mt-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--wild-earth)]">
+                  Recovery Balm · 50g
+                </p>
+
+                <h3
+                  className="mt-3 text-3xl font-normal text-[var(--wild-forest)]"
+                  style={serifFont}
+                >
+                  Misty Glen
+                </h3>
+
+                <p className="mt-3 max-w-sm text-base leading-7 text-[var(--wild-soft)]">
+                  A softer botanical blend for slowing down and giving tired
+                  bodies a little care.
+                </p>
+
+                <p
+                  className="mt-4 text-2xl text-[var(--wild-charcoal)]"
+                  style={serifFont}
+                >
+                  $24.95
+                </p>
+
+                <a
+                  href="#misty-glen"
+                  className="mt-5 inline-block border-b border-[var(--wild-earth)] pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--wild-earth)]"
+                >
+                  View Product
+                </a>
+              </div>
+            </article>
+
+            {/* WILD RENEWAL */}
+            <article>
+              <div className="relative aspect-[4/3] overflow-hidden">
+                <Image
+                  src="/images/wild-soul-wild-renewal.png"
+                  alt="Wild Soul Wild Renewal coffee and sugar scrub with Honey Glow body butter beside a warm bath"
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-contain"
+                />
+              </div>
+
+              <div className="mt-6">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--wild-earth)]">
+                  Coffee &amp; Sugar Scrub · 210g
+                </p>
+
+                <h3
+                  className="mt-3 text-3xl font-normal text-[var(--wild-forest)]"
+                  style={serifFont}
+                >
+                  Wild Renewal
+                </h3>
+
+                <p className="mt-3 max-w-sm text-base leading-7 text-[var(--wild-soft)]">
+                  Coffee, sugar and botanicals for scrubbing off the day and
+                  taking five.
+                </p>
+
+                <p
+                  className="mt-4 text-2xl text-[var(--wild-charcoal)]"
+                  style={serifFont}
+                >
+                  $29.95
+                </p>
+
+                <a
+                  href="#wild-renewal"
+                  className="mt-5 inline-block border-b border-[var(--wild-earth)] pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--wild-earth)]"
+                >
+                  View Product
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
     </main>
   );
 }
