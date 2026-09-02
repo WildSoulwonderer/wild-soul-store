@@ -550,8 +550,8 @@ export default function Home() {
                 </h3>
 
                 <p className="mt-3 max-w-sm text-base leading-7 text-[var(--wild-soft)]">
-                  Coffee, sugar and botanicals for scrubbing off the day and
-                  taking five.
+                 Coffee, sweet orange, spearmint and vanilla for scrubbing off the day
+and taking five.
                 </p>
 
                 <p
