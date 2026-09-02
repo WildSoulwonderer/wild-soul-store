@@ -188,14 +188,170 @@ export default function Home() {
                 Shop Wild Soul
               </a>
 
-             <a
-  href="#story"
-  className="border-b border-white/90 pb-1 text-xl font-normal text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.55)] transition-opacity hover:opacity-70"
-  style={serifFont}
->
-  Our Story
-</a>
+              <a
+                href="#story"
+                className="border-b border-white/90 pb-1 text-xl font-normal text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.55)] transition-opacity hover:opacity-70"
+                style={serifFont}
+              >
+                Our Story
+              </a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* MADE FOR REAL LIFE */}
+      <section
+        id="shop"
+        className="relative overflow-hidden bg-[var(--wild-cream)] px-6 py-24 sm:px-10 sm:py-28 lg:px-12 lg:py-32"
+      >
+        <div className="mx-auto max-w-[1450px]">
+          {/* INTRO */}
+          <div className="max-w-3xl">
+            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-[var(--wild-earth)] sm:text-sm">
+              Wild Soul
+            </p>
+
+            <h2
+              className="text-5xl font-normal leading-[0.95] text-[var(--wild-forest)] sm:text-6xl lg:text-7xl"
+              style={serifFont}
+            >
+              Made for real life.
+            </h2>
+
+            <p
+              className="mt-6 max-w-xl text-2xl font-normal italic leading-snug text-[#6f5a4a] sm:text-3xl"
+              style={serifFont}
+            >
+              Small moments of care,
+              <br className="hidden sm:block" /> wherever you find them.
+            </p>
+          </div>
+
+          {/* CATEGORY GRID */}
+          <div className="mt-20 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
+            {/* BODY */}
+            <a href="#body" className="group block">
+              <div className="relative aspect-[4/5] overflow-hidden bg-[#ded5c7]">
+  <Image
+    src="/images/wild-soul-body.png"
+    alt="Wild Soul Wild Renewal coffee and sugar scrub in a warm, relaxed bathroom setting"
+    fill
+    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+  />
+</div>
+
+              <div className="mt-6">
+                <h3
+                  className="text-3xl font-normal text-[var(--wild-forest)]"
+                  style={serifFont}
+                >
+                  Body
+                </h3>
+
+                <p className="mt-2 max-w-xs text-sm leading-7 text-[var(--wild-soft)]">
+                  Scrubs, butters and everyday skin care made for a little time
+                  to yourself.
+                </p>
+
+                <span className="mt-4 inline-block border-b border-[var(--wild-earth)] pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--wild-earth)]">
+                  Explore Body
+                </span>
+              </div>
+            </a>
+
+            {/* BATH */}
+            <a href="#bath" className="group block lg:mt-14">
+             <div className="relative aspect-[4/6] overflow-hidden bg-[#b8c0b2]">
+  <Image
+    src="/images/wild-soul-bath.png"
+    alt="Wild Soul Highland Recovery bath soak beside a warm, softly lit bath"
+    fill
+    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+  />
+</div>
+
+              <div className="mt-6">
+                <h3
+                  className="text-3xl font-normal text-[var(--wild-forest)]"
+                  style={serifFont}
+                >
+                  Bath
+                </h3>
+
+                <p className="mt-2 max-w-xs text-sm leading-7 text-[var(--wild-soft)]">
+                  Soaks and simple escapes for the five minutes you manage to
+                  steal.
+                </p>
+
+                <span className="mt-4 inline-block border-b border-[var(--wild-earth)] pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--wild-earth)]">
+                  Explore Bath
+                </span>
+              </div>
+            </a>
+
+            {/* RECOVERY */}
+            <a href="#recovery" className="group block">
+              <div className="relative aspect-[4/5] overflow-hidden bg-[#a89a83]">
+  <Image
+    src="/images/wild-soul-recovery.png"
+    alt="Wild Soul Bush Relief recovery balm resting on weathered timber beside Australian stockyards at the end of the day"
+    fill
+    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+  />
+</div>
+
+              <div className="mt-6">
+                <h3
+                  className="text-3xl font-normal text-[var(--wild-forest)]"
+                  style={serifFont}
+                >
+                  Recovery
+                </h3>
+
+                <p className="mt-2 max-w-xs text-sm leading-7 text-[var(--wild-soft)]">
+                  Balms and recovery care for tired hands, muscles and bodies
+                  that have done the work.
+                </p>
+
+                <span className="mt-4 inline-block border-b border-[var(--wild-earth)] pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--wild-earth)]">
+                  Explore Recovery
+                </span>
+              </div>
+            </a>
+
+            {/* SKIN OILS */}
+            <a href="#skin-oils" className="group block lg:mt-14">
+            <div className="relative aspect-[4/6] overflow-hidden bg-[#c8b89f]">
+  <Image
+    src="/images/wild-soul-skin-oils-v3.png"
+    alt="Wild Soul Golden Grove botanical skin oil in warm morning light"
+    fill
+    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+  />
+</div>
+
+              <div className="mt-6">
+  <h3
+    className="text-3xl font-normal text-[var(--wild-forest)]"
+    style={serifFont}
+  >
+    Skin Oils
+  </h3>
+
+  <p className="mt-2 max-w-xs text-base leading-7 text-[var(--wild-soft)]">
+    Botanical oils for face, body and beards — made to nourish, soften and glow.
+  </p>
+
+  <span className="mt-4 inline-block border-b border-[var(--wild-earth)] pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--wild-earth)]">
+    Explore Skin Oils
+  </span>
+</div>
+            </a>
           </div>
         </div>
       </section>
