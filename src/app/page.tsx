@@ -653,6 +653,93 @@ and taking five.
   </div>
 </section>
 
+{/* FOOTER */}
+<footer className="bg-[var(--wild-forest)] text-[#f4eee4]">
+  <div className="mx-auto max-w-[1600px] px-8 py-16 sm:px-14 lg:px-20 lg:py-20">
+
+    <div className="grid gap-14 lg:grid-cols-[1.4fr_0.7fr_0.7fr]">
+
+      {/* BRAND */}
+      <div className="max-w-[520px]">
+        <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#c8aa8c]">
+          Wild Soul
+        </p>
+
+        <p
+          className="mt-5 text-[clamp(2.8rem,4vw,4.5rem)] font-normal leading-[0.95] tracking-[-0.035em]"
+          style={serifFont}
+        >
+          Take five.
+          <br />
+          <span className="italic text-[#d7b89a]">
+            The rest can wait.
+          </span>
+        </p>
+
+        <p className="mt-7 max-w-[430px] text-sm leading-7 text-[#f4eee4]/70 sm:text-base">
+          Small-batch body, bath, and skincare products made in
+          Queensland for real life.
+        </p>
+      </div>
+
+      {/* EXPLORE */}
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#c8aa8c]">
+          Explore
+        </p>
+
+        <nav className="mt-6 flex flex-col gap-4 text-sm text-[#f4eee4]/80 sm:text-base">
+          <a href="#shop" className="transition-opacity hover:opacity-60">
+            Shop
+          </a>
+          <a href="#story" className="transition-opacity hover:opacity-60">
+            Our Story
+          </a>
+          <a href="#markets" className="transition-opacity hover:opacity-60">
+            Markets
+          </a>
+        </nav>
+      </div>
+
+      {/* HELP */}
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#c8aa8c]">
+          Help
+        </p>
+
+        <nav className="mt-6 flex flex-col gap-4 text-sm text-[#f4eee4]/80 sm:text-base">
+          <a href="#" className="transition-opacity hover:opacity-60">
+            Shipping
+          </a>
+          <a href="#" className="transition-opacity hover:opacity-60">
+            Returns
+          </a>
+          <a href="#" className="transition-opacity hover:opacity-60">
+            Contact
+          </a>
+          <a href="#" className="transition-opacity hover:opacity-60">
+            Privacy
+          </a>
+          <a href="#" className="transition-opacity hover:opacity-60">
+            Terms
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <div className="mt-16 flex flex-col gap-4 border-t border-white/15 pt-7 text-xs text-[#f4eee4]/55 sm:flex-row sm:items-center sm:justify-between">
+      <p>
+        © {new Date().getFullYear()} Wild Soul. Made in Queensland, Australia.
+      </p>
+
+      <p>
+        Built for the work. Made for the recovery.
+      </p>
+    </div>
+
+  </div>
+</footer>
+
     </main>
   );
 }
