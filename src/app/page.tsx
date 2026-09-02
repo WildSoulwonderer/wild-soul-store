@@ -355,6 +355,59 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+{/* TAKE FIVE */}
+<section className="bg-[var(--wild-forest)]">
+  <div className="mx-auto max-w-[1600px] px-7 py-28 sm:px-12 sm:py-36 lg:px-20 lg:py-44">
+    <div className="max-w-[980px]">
+      <p className="mb-8 text-sm font-semibold uppercase tracking-[0.3em] text-[#c88f68]">
+        Wild Soul
+      </p>
+
+      <h2
+        className="max-w-[900px] text-[clamp(3.5rem,6vw,6.5rem)] font-normal leading-[0.95] tracking-[-0.035em] text-[var(--wild-cream)]"
+        style={serifFont}
+      >
+        Not another thing
+        <br />
+        for your to-do list.
+      </h2>
+
+      <div className="mt-14 max-w-[720px]">
+        <p
+          className="text-[1.65rem] font-normal leading-[1.45] text-[var(--wild-cream)]/90 sm:text-[1.9rem]"
+          style={serifFont}
+        >
+          Wild Soul came from real life.
+        </p>
+
+        <p className="mt-8 max-w-[680px] text-base leading-8 text-[var(--wild-cream)]/75 sm:text-lg">
+          Busy days, tired bodies, messy houses, long hours and those moments when
+          everyone seems to need something from you at once.
+        </p>
+
+        <p className="mt-6 max-w-[680px] text-base leading-8 text-[var(--wild-cream)]/75 sm:text-lg">
+          It was never about creating another routine to keep up with. It was about
+          making something that could give you a few minutes back — a scrub in the
+          shower, a balm after a long day, a bath when the house finally goes quiet.
+        </p>
+
+        <p className="mt-6 max-w-[680px] text-base leading-8 text-[var(--wild-cream)]/75 sm:text-lg">
+          Nothing complicated. Nothing perfect. Just a small reminder to stop for
+          five minutes when you can.
+        </p>
+
+        <p
+          className="mt-12 text-[2rem] italic text-[#d5a27d] sm:text-[2.4rem]"
+          style={serifFont}
+        >
+          Take five. The rest can wait.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
     </main>
   );
 }
