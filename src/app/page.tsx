@@ -231,7 +231,7 @@ export default function Home() {
           {/* CATEGORY GRID */}
           <div className="mt-20 grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
             {/* BODY */}
-            <a href="#body" className="group block">
+            <a href="/shop#body" className="group block">
               <div className="relative aspect-[4/5] overflow-hidden bg-[#ded5c7]">
   <Image
     src="/images/wild-soul-body.png"
@@ -262,7 +262,7 @@ export default function Home() {
             </a>
 
             {/* BATH */}
-            <a href="#bath" className="group block lg:mt-14">
+            <a href="/shop#bath" className="group block lg:mt-14">
              <div className="relative aspect-[4/6] overflow-hidden bg-[#b8c0b2]">
   <Image
     src="/images/wild-soul-bath.png"
@@ -293,7 +293,7 @@ export default function Home() {
             </a>
 
             {/* RECOVERY */}
-            <a href="#recovery" className="group block">
+            <a href="/shop#recovery" className="group block">
               <div className="relative aspect-[4/5] overflow-hidden bg-[#a89a83]">
   <Image
     src="/images/wild-soul-recovery.png"
@@ -324,7 +324,7 @@ export default function Home() {
             </a>
 
             {/* SKIN OILS */}
-            <a href="#skin-oils" className="group block lg:mt-14">
+            <a href="/shop#skin-oils" className="group block lg:mt-14">
             <div className="relative aspect-[4/6] overflow-hidden bg-[#c8b89f]">
   <Image
     src="/images/wild-soul-skin-oils-v3.png"

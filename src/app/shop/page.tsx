@@ -89,6 +89,8 @@ const productLinks: Record<string, string> = {
   "Misty Glen": "/shop/misty-glen",
   "First Light": "/shop/first-light",
   "Highland Mist": "/shop/highland-mist",
+  "Wild Renewal": "/shop/wild-renewal",
+  "Sunlit Bloom": "/shop/sunlit-bloom",
 };
 
 export default function ShopPage() {
