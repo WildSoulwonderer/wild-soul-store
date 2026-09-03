@@ -91,6 +91,8 @@ const productLinks: Record<string, string> = {
   "Highland Mist": "/shop/highland-mist",
   "Wild Renewal": "/shop/wild-renewal",
   "Sunlit Bloom": "/shop/sunlit-bloom",
+  "Ocean Drift": "/shop/ocean-drift",
+  "Desert Calm": "/shop/desert-calm",
 };
 
 export default function ShopPage() {

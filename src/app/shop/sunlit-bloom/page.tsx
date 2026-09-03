@@ -184,32 +184,24 @@ the glow.
           </div>
 
           <div className="max-w-[720px] space-y-6 text-xl leading-9 text-[#f4eee4]/80">
-            <p>
-    <p>
-  Some days your skin looks about as tired as you feel.
-</p>
-            </p>
+  <p>
+    Some days your skin looks about as tired as you feel.
+  </p>
 
-            <p>
 <p>
   Sunlit Bloom combines fine sugar with nourishing oils and Kakadu plum
   to gently buff away dull, dry skin, while sweet orange, mandarin and
   nerolina bring the bright, fresh scent.
 </p>
-            </p>
 
-            <p>
              <p>
   Work it over damp skin wherever things are feeling dry or dull, taking a
   little extra time on elbows, knees and anywhere that could use some attention.
 </p>
-            </p>
 
-            <p>
    <p>
   Bright, simple and made for the days your skin needs waking up too.
 </p>
-            </p>
 
             <p
               className="pt-2 text-2xl italic text-[#d5a27d]"
@@ -222,65 +214,62 @@ the glow.
       </section>
 
       {/* HOW TO USE */}
-            <section className="px-7 py-24 sm:px-12 sm:py-32 lg:px-20">
-              <div className="mx-auto grid max-w-[1450px] gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
-                <div className="order-2 lg:order-1">
-                  <p className="mb-5 text-sm font-semibold uppercase tracking-[0.3em] text-[#9a6545]">
-                    How to Use
-                  </p>
-      
-                  <h2
-                    className="text-[clamp(3.2rem,4.5vw,5rem)] font-normal leading-[0.95] text-[#243f35]"
-                    style={serifFont}
-                  >
-                   Scoop it.
-      <br />
-      Scrub it.
-                  </h2>
-      
-                  <div className="mt-8 max-w-[570px] space-y-5 text-xl leading-9 text-[#5f574f]">
-                    <p>
-                     <p>
-        Scoop a small amount into your hands and massage over damp skin using
-        gentle circular motions.
+<section className="px-7 py-24 sm:px-12 sm:py-32 lg:px-20">
+  <div className="mx-auto grid max-w-[1450px] gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+
+    <div className="order-2 lg:order-1">
+      <p className="mb-5 text-sm font-semibold uppercase tracking-[0.3em] text-[#9a6545]">
+        How to Use
       </p>
-                    </p>
-      
-                    <p>
-                      <p>
-        Spend a little more time on rough spots like elbows, knees and heels,
-        then rinse well with warm water.
-      </p>
-                    </p>
-      
-                    <p>
-                      <p>
-        Use 1–2 times a week, or whenever your skin feels like it needs a reset.
-      </p>
-                    </p>
-      
-                    <p
-                      className="pt-2 text-2xl italic text-[#704a35]"
-                      style={serifFont}
-                    >
-                      Let yourself glow a little.
-                    </p>
-                  </div>
-                </div>
-      
-                <div className="order-1 lg:order-2">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-[#e1d8ca]">
-                    <Image
-                      src="/images/Sunlit_Bloom_Product.jpg"
-                      alt="Wild Soul Sunlit Bloom sugar scrub"
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 55vw"
-                      className="object-contain"
-                    />
-                  </div>
-                </div>
-              </div>
-            </section>
+
+      <h2
+        className="text-[clamp(3.2rem,4.5vw,5rem)] font-normal leading-[0.95] text-[#243f35]"
+        style={serifFont}
+      >
+        Scoop it.
+        <br />
+        Scrub it.
+      </h2>
+
+      <div className="mt-8 max-w-[570px] space-y-5 text-xl leading-9 text-[#5f574f]">
+        <p>
+          Scoop a small amount into your hands and massage over damp skin
+          using gentle circular motions.
+        </p>
+
+        <p>
+          Spend a little more time on rough spots like elbows, knees and
+          heels, then rinse well with warm water.
+        </p>
+
+        <p>
+          Use 1–2 times a week, or whenever your skin feels like it needs
+          a reset.
+        </p>
+
+        <p
+          className="pt-2 text-2xl italic text-[#704a35]"
+          style={serifFont}
+        >
+          Let yourself glow a little.
+        </p>
+      </div>
+    </div>
+
+    <div className="order-1 lg:order-2">
+      <div className="relative aspect-[4/3] overflow-hidden bg-[#e1d8ca]">
+        <Image
+          src="/images/Sunlit_Bloom_Product.jpg"
+          alt="Wild Soul Sunlit Bloom sugar scrub"
+          fill
+          sizes="(max-width: 1024px) 100vw, 55vw"
+          className="object-contain"
+        />
+      </div>
+    </div>
+
+  </div>
+</section>
 
             {/* WHAT'S INSIDE */}
       <section className="bg-[#e8e1d5] px-7 py-24 sm:px-12 sm:py-32 lg:px-20">
@@ -349,19 +338,15 @@ Use every bit.
 
             <div className="mt-8 space-y-5 text-xl leading-9 text-[#5f574f]">
               <p>
-                <p>
   Sunlit Bloom comes in a reusable amber glass jar with a
 simple screw-top lid — easy to scoop from, easy to close
 up and keep ready for next time.
 </p>
-              </p>
 
-              <p>
                 <p>
   Keep the lid on between uses and try to keep water out of the jar.
   A little care keeps the scrub ready for the next five minutes you steal for yourself.
 </p>
-              </p>
             </div>
           </div>
         </div>
