@@ -240,26 +240,6 @@ export default function ShopPage() {
         </div>
       </section>
 
-      {/* COLLECTION NAV */}
-      <section className="border-y border-[#243f35]/10">
-        <div className="mx-auto grid max-w-[1450px] grid-cols-2 md:grid-cols-4">
-          {collections.map((collection) => (
-            <a
-              key={collection.id}
-              href={`#${collection.id}`}
-              className="border-b border-r border-[#243f35]/10 px-5 py-7 text-center transition-colors hover:bg-[#243f35] hover:text-[#f4eee4] md:border-b-0"
-            >
-              <span
-                className="text-xl sm:text-2xl"
-                style={serifFont}
-              >
-                {collection.name}
-              </span>
-            </a>
-          ))}
-        </div>
-      </section>
-
       {/* COLLECTION INTRO CARDS */}
       <section className="px-7 py-24 sm:px-12 sm:py-32 lg:px-20">
         <div className="mx-auto max-w-[1450px]">
@@ -387,9 +367,7 @@ export default function ShopPage() {
   })}
 </div>
 
-                <p className="mt-10 text-xs font-semibold uppercase tracking-[0.22em] text-[#c88f68]">
-                  Individual product pages coming next
-                </p>
+                
               </div>
             </div>
           ))}
