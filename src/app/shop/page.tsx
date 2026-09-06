@@ -100,7 +100,7 @@ const productLinks: Record<string, string> = {
   "Desert Calm": "/shop/desert-calm",
   "Highland Recovery": "/shop/highland-recovery",
   "Petal & Plum": "/shop/petal-and-plum",
-  "ironwood": "/shop/ironwood",
+  "Ironwood": "/shop/ironwood",
   "Red Dust": "/shop/red-dust",
   "Golden Grove": "/shop/golden-grove",
 };
