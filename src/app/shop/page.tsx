@@ -27,7 +27,10 @@ const collections = [
       "First Light",
       "Highland Mist",
       "Highland Recovery",
-      "Petal & Plum"
+      "Petal & Plum",
+      "Ironwood",
+      "Red Dust",
+      "Golden Grove"
     ],
   },
   {
@@ -97,6 +100,9 @@ const productLinks: Record<string, string> = {
   "Desert Calm": "/shop/desert-calm",
   "Highland Recovery": "/shop/highland-recovery",
   "Petal & Plum": "/shop/petal-and-plum",
+  "ironwood": "/shop/ironwood",
+  "Red Dust": "/shop/red-dust",
+  "Golden Grove": "/shop/golden-grove",
 };
 
 export default function ShopPage() {
