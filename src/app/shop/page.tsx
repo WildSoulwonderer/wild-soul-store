@@ -26,6 +26,8 @@ const collections = [
       "Morning Ember",
       "First Light",
       "Highland Mist",
+      "Highland Recovery",
+      "Petal & Plum"
     ],
   },
   {
@@ -93,6 +95,8 @@ const productLinks: Record<string, string> = {
   "Sunlit Bloom": "/shop/sunlit-bloom",
   "Ocean Drift": "/shop/ocean-drift",
   "Desert Calm": "/shop/desert-calm",
+  "Highland Recovery": "/shop/highland-recovery",
+  "Petal & Plum": "/shop/petal-and-plum",
 };
 
 export default function ShopPage() {
