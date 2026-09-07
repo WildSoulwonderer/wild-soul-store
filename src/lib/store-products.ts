@@ -1,5 +1,3 @@
-import { createClient } from "@supabase/supabase-js";
-
 export type StoreProduct = {
   id: string;
   name: string;
@@ -18,26 +16,25 @@ export async function getStoreProducts(): Promise<StoreProduct[]> {
 
   if (!url || !key) return [];
 
-  const supabase = createClient(url, key, {
-    auth: { persistSession: false, autoRefreshToken: false },
+  const params = new URLSearchParams({
+    select: "id,name,store_slug,category,description,short_description,retail_price,current_stock,photo_url",
+    show_online: "eq.true",
+    is_active: "eq.true",
+    store_slug: "not.is.null",
+    order: "name.asc",
   });
 
-  const { data, error } = await supabase
-    .from("products")
-    .select(
-      "id,name,store_slug,category,description,short_description,retail_price,current_stock,photo_url",
-    )
-    .eq("show_online", true)
-    .eq("is_active", true)
-    .not("store_slug", "is", null)
-    .order("name");
+  const response = await fetch(`${url}/rest/v1/products?${params}`, {
+    headers: { apikey: key, Authorization: `Bearer ${key}` },
+    cache: "no-store",
+  });
 
-  if (error) {
-    console.error("Unable to load store products:", error.message);
+  if (!response.ok) {
+    console.error("Unable to load store products:", response.statusText);
     return [];
   }
 
-  return (data ?? []) as StoreProduct[];
+  return (await response.json()) as StoreProduct[];
 }
 
 export async function getStoreProduct(slug: string) {
