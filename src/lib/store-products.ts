@@ -16,16 +16,14 @@ export async function getStoreProducts(): Promise<StoreProduct[]> {
 
   if (!url || !key) return [];
 
-  const params = new URLSearchParams({
-    select: "id,name,store_slug,category,description,short_description,retail_price,current_stock,photo_url",
-    show_online: "eq.true",
-    is_active: "eq.true",
-    store_slug: "not.is.null",
-    order: "name.asc",
-  });
-
-  const response = await fetch(`${url}/rest/v1/products?${params}`, {
-    headers: { apikey: key, Authorization: `Bearer ${key}` },
+  const response = await fetch(`${url}/rest/v1/rpc/get_store_products`, {
+    method: "POST",
+    headers: {
+      apikey: key,
+      Authorization: `Bearer ${key}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ p_slug: null }),
     cache: "no-store",
   });
 
