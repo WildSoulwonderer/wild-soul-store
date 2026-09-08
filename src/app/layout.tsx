@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
+import { BagProvider } from "@/context/BagContext";
 
 const fraunces = Fraunces({
   variable: "--font-wild-serif",
@@ -32,7 +33,9 @@ export default function RootLayout({
       lang="en"
       className={`${fraunces.variable} ${inter.variable}`}
     >
-      <body>{children}</body>
+      <body>
+  <BagProvider>{children}</BagProvider>
+</body>
     </html>
   );
 }

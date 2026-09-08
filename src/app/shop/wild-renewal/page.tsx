@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import AddToBagButton from "@/components/AddToBagButton";
 
 const serifFont = {
   fontFamily: "var(--font-wild-serif), Georgia, 'Times New Roman', serif",
@@ -146,12 +147,11 @@ export default function WildRenewalPage() {
               </p>
             </div>
 
-            <button
-              type="button"
-              className="mt-10 inline-flex min-h-14 w-full items-center justify-center bg-[#243f35] px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-[#1c332b] sm:w-auto"
-            >
-              Add to Bag
-            </button>
+           <AddToBagButton
+  id="wild-renewal"
+  name="Wild Renewal Sugar Scrub"
+  price={24.95}
+/>
           </div>
         </div>
       </section>

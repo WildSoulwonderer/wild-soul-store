@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { getStoreProducts } from "@/lib/store-products";
-
-export const dynamic = "force-dynamic";
+import AddToBagButton from "@/components/AddToBagButton";
+import BagCount from "@/components/BagCount";
 
 const serifFont = {
   fontFamily: "var(--font-wild-serif), Georgia, 'Times New Roman', serif",
@@ -108,8 +107,7 @@ const productLinks: Record<string, string> = {
   "Golden Grove": "/shop/golden-grove",
 };
 
-export default async function ShopPage() {
-  const onlineProducts = await getStoreProducts();
+export default function ShopPage() {
   return (
     <main className="min-h-screen bg-[#f4eee4] text-[#243f35]">
       {/* HEADER */}
@@ -377,66 +375,6 @@ export default async function ShopPage() {
           ))}
         </div>
       </section>
-
-      {/* PRODUCTS MANAGED FROM WILD SOUL HQ */}
-      {onlineProducts.length > 0 && (
-        <section className="bg-[#e8e1d5] px-7 py-24 sm:px-12 sm:py-32 lg:px-20">
-          <div className="mx-auto max-w-[1450px]">
-            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-[#9a6545]">
-              Available now
-            </p>
-            <h2
-              className="max-w-[850px] text-[clamp(3.4rem,5vw,5.8rem)] font-normal leading-[0.92] text-[#243f35]"
-              style={serifFont}
-            >
-              Made in small batches,
-              <br />
-              <span className="italic text-[#704a35]">ready when you are.</span>
-            </h2>
-
-            <div className="mt-16 grid gap-x-8 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
-              {onlineProducts.map((product) => (
-                <Link
-                  key={product.id}
-                  href={`/shop/${product.store_slug}`}
-                  className="group block"
-                >
-                  <div className="relative aspect-[4/3] overflow-hidden bg-[#d8cfc1]">
-                    {product.photo_url ? (
-                      <img
-                        src={product.photo_url}
-                        alt={product.name}
-                        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]"
-                      />
-                    ) : (
-                      <div className="flex h-full items-center justify-center p-8 text-center text-[#704a35]">
-                        Product photo coming soon
-                      </div>
-                    )}
-                  </div>
-                  <p className="mt-6 text-xs font-semibold uppercase tracking-[0.22em] text-[#9a6545]">
-                    {product.category || "Wild Soul"}
-                  </p>
-                  <div className="mt-2 flex items-start justify-between gap-4">
-                    <h3 className="text-3xl text-[#243f35]" style={serifFont}>
-                      {product.name}
-                    </h3>
-                    <p className="shrink-0 text-lg font-medium text-[#243f35]">
-                      ${Number(product.retail_price ?? 0).toFixed(2)}
-                    </p>
-                  </div>
-                  <p className="mt-4 line-clamp-3 leading-7 text-[#5f574f]">
-                    {product.short_description || product.description}
-                  </p>
-                  <p className="mt-5 text-xs font-semibold uppercase tracking-[0.18em] text-[#704a35]">
-                    {(product.current_stock ?? 0) > 0 ? "View product" : "Sold out"}
-                  </p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* COMING SOON */}
       <section className="bg-[#e8e1d5] px-7 py-24 sm:px-12 sm:py-32 lg:px-20">

@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import AddToBagButton from "@/components/AddToBagButton";
+import BagCount from "@/components/BagCount";
 
 const serifFont = {
   fontFamily: "var(--font-wild-serif), Georgia, 'Times New Roman', serif",
@@ -77,7 +79,7 @@ export default function HighlandRecoveryPage() {
 
             <span className="h-8 w-px bg-[#243f35]/30" />
 
-            <span className="opacity-60">Bag (0)</span>
+            <BagCount />
           </nav>
 
           <button
@@ -147,12 +149,12 @@ export default function HighlandRecoveryPage() {
         </p>
       </div>
 
-      <button
-        type="button"
-        className="mt-10 inline-flex min-h-14 w-full items-center justify-center bg-[#243f35] px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-[#1c332b] sm:w-auto"
-      >
-        Add to Bag
-      </button>
+      {/* HIGHLAND RECOVERY */}
+<AddToBagButton
+  id="highland-recovery"
+  name="Highland Recovery Bath Soak"
+  price={18.95}
+/>
     </div>
   </div>
 </section>
