@@ -8,6 +8,7 @@ export type StoreProduct = {
   retail_price: number | null;
   current_stock: number | null;
   photo_url: string | null;
+  secondary_photo_url: string | null;
 };
 
 export async function getStoreProducts(): Promise<StoreProduct[]> {
