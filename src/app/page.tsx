@@ -1,4 +1,5 @@
 import Image from "next/image";
+import MarketsSection from "@/components/MarketsSection";
 
 const serifFont = {
   fontFamily: "var(--font-wild-serif), Georgia, 'Times New Roman', serif",
@@ -233,14 +234,14 @@ export default function Home() {
             {/* BODY */}
             <a href="/shop#body" className="group block">
               <div className="relative aspect-[4/5] overflow-hidden bg-[#ded5c7]">
-  <Image
-    src="/images/wild-soul-body.png"
-    alt="Wild Soul Wild Renewal coffee and sugar scrub in a warm, relaxed bathroom setting"
-    fill
-    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-  />
-</div>
+                <Image
+                  src="/images/wild-soul-body.png"
+                  alt="Wild Soul Wild Renewal coffee and sugar scrub in a warm, relaxed bathroom setting"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                />
+              </div>
 
               <div className="mt-6">
                 <h3
@@ -263,15 +264,15 @@ export default function Home() {
 
             {/* BATH */}
             <a href="/shop#bath" className="group block lg:mt-14">
-             <div className="relative aspect-[4/6] overflow-hidden bg-[#b8c0b2]">
-  <Image
-    src="/images/wild-soul-bath.png"
-    alt="Wild Soul Highland Recovery bath soak beside a warm, softly lit bath"
-    fill
-    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-  />
-</div>
+              <div className="relative aspect-[4/6] overflow-hidden bg-[#b8c0b2]">
+                <Image
+                  src="/images/wild-soul-bath.png"
+                  alt="Wild Soul Highland Recovery bath soak beside a warm, softly lit bath"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                />
+              </div>
 
               <div className="mt-6">
                 <h3
@@ -295,14 +296,14 @@ export default function Home() {
             {/* RECOVERY */}
             <a href="/shop#recovery" className="group block">
               <div className="relative aspect-[4/5] overflow-hidden bg-[#a89a83]">
-  <Image
-    src="/images/wild-soul-recovery.png"
-    alt="Wild Soul Bush Relief recovery balm resting on weathered timber beside Australian stockyards at the end of the day"
-    fill
-    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-  />
-</div>
+                <Image
+                  src="/images/wild-soul-recovery.png"
+                  alt="Wild Soul Bush Relief recovery balm resting on weathered timber beside Australian stockyards at the end of the day"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                />
+              </div>
 
               <div className="mt-6">
                 <h3
@@ -325,88 +326,88 @@ export default function Home() {
 
             {/* SKIN OILS */}
             <a href="/shop#skin-oils" className="group block lg:mt-14">
-            <div className="relative aspect-[4/6] overflow-hidden bg-[#c8b89f]">
-  <Image
-    src="/images/wild-soul-skin-oils-v3.png"
-    alt="Wild Soul Golden Grove botanical skin oil in warm morning light"
-    fill
-    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-    className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-  />
-</div>
+              <div className="relative aspect-[4/6] overflow-hidden bg-[#c8b89f]">
+                <Image
+                  src="/images/wild-soul-skin-oils-v3.png"
+                  alt="Wild Soul Golden Grove botanical skin oil in warm morning light"
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                />
+              </div>
 
               <div className="mt-6">
-  <h3
-    className="text-3xl font-normal text-[var(--wild-forest)]"
-    style={serifFont}
-  >
-    Skin Oils
-  </h3>
+                <h3
+                  className="text-3xl font-normal text-[var(--wild-forest)]"
+                  style={serifFont}
+                >
+                  Skin Oils
+                </h3>
 
-  <p className="mt-2 max-w-xs text-base leading-7 text-[var(--wild-soft)]">
-    Botanical oils for face, body and beards — made to nourish, soften and glow.
-  </p>
+                <p className="mt-2 max-w-xs text-base leading-7 text-[var(--wild-soft)]">
+                  Botanical oils for face, body and beards — made to nourish, soften and glow.
+                </p>
 
-  <span className="mt-4 inline-block border-b border-[var(--wild-earth)] pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--wild-earth)]">
-    Explore Skin Oils
-  </span>
-</div>
+                <span className="mt-4 inline-block border-b border-[var(--wild-earth)] pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--wild-earth)]">
+                  Explore Skin Oils
+                </span>
+              </div>
             </a>
           </div>
         </div>
       </section>
 
-{/* TAKE FIVE */}
-<section className="bg-[var(--wild-forest)]">
-  <div className="mx-auto max-w-[1600px] px-7 py-28 sm:px-12 sm:py-36 lg:px-20 lg:py-44">
-    <div className="max-w-[980px]">
-      <p className="mb-8 text-sm font-semibold uppercase tracking-[0.3em] text-[#c88f68]">
-        Wild Soul
-      </p>
+      {/* TAKE FIVE */}
+      <section className="bg-[var(--wild-forest)]">
+        <div className="mx-auto max-w-[1600px] px-7 py-28 sm:px-12 sm:py-36 lg:px-20 lg:py-44">
+          <div className="max-w-[980px]">
+            <p className="mb-8 text-sm font-semibold uppercase tracking-[0.3em] text-[#c88f68]">
+              Wild Soul
+            </p>
 
-      <h2
-        className="max-w-[900px] text-[clamp(3.5rem,6vw,6.5rem)] font-normal leading-[0.95] tracking-[-0.035em] text-[var(--wild-cream)]"
-        style={serifFont}
-      >
-        Not another thing
-        <br />
-        for your to-do list.
-      </h2>
+            <h2
+              className="max-w-[900px] text-[clamp(3.5rem,6vw,6.5rem)] font-normal leading-[0.95] tracking-[-0.035em] text-[var(--wild-cream)]"
+              style={serifFont}
+            >
+              Not another thing
+              <br />
+              for your to-do list.
+            </h2>
 
-      <div className="mt-14 max-w-[720px]">
-        <p
-          className="text-[1.65rem] font-normal leading-[1.45] text-[var(--wild-cream)]/90 sm:text-[1.9rem]"
-          style={serifFont}
-        >
-          Wild Soul came from real life.
-        </p>
+            <div className="mt-14 max-w-[720px]">
+              <p
+                className="text-[1.65rem] font-normal leading-[1.45] text-[var(--wild-cream)]/90 sm:text-[1.9rem]"
+                style={serifFont}
+              >
+                Wild Soul came from real life.
+              </p>
 
-        <p className="mt-8 max-w-[680px] text-base leading-8 text-[var(--wild-cream)]/75 sm:text-lg">
-          Busy days, tired bodies, messy houses, long hours and those moments when
-          everyone seems to need something from you at once.
-        </p>
+              <p className="mt-8 max-w-[680px] text-base leading-8 text-[var(--wild-cream)]/75 sm:text-lg">
+                Busy days, tired bodies, messy houses, long hours and those moments when
+                everyone seems to need something from you at once.
+              </p>
 
-        <p className="mt-6 max-w-[680px] text-base leading-8 text-[var(--wild-cream)]/75 sm:text-lg">
-          It was never about creating another routine to keep up with. It was about
-          making something that could give you a few minutes back — a scrub in the
-          shower, a balm after a long day, a bath when the house finally goes quiet.
-        </p>
+              <p className="mt-6 max-w-[680px] text-base leading-8 text-[var(--wild-cream)]/75 sm:text-lg">
+                It was never about creating another routine to keep up with. It was about
+                making something that could give you a few minutes back — a scrub in the
+                shower, a balm after a long day, a bath when the house finally goes quiet.
+              </p>
 
-        <p className="mt-6 max-w-[680px] text-base leading-8 text-[var(--wild-cream)]/75 sm:text-lg">
-          Nothing complicated. Nothing perfect. Just a small reminder to stop for
-          five minutes when you can.
-        </p>
+              <p className="mt-6 max-w-[680px] text-base leading-8 text-[var(--wild-cream)]/75 sm:text-lg">
+                Nothing complicated. Nothing perfect. Just a small reminder to stop for
+                five minutes when you can.
+              </p>
 
-        <p
-          className="mt-12 text-[2rem] italic text-[#d5a27d] sm:text-[2.4rem]"
-          style={serifFont}
-        >
-          Take five. The rest can wait.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+              <p
+                className="mt-12 text-[2rem] italic text-[#d5a27d] sm:text-[2.4rem]"
+                style={serifFont}
+              >
+                Take five. The rest can wait.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* WILD SOUL FAVOURITES */}
       <section className="bg-[var(--wild-cream)] px-6 py-24 sm:px-10 sm:py-28 lg:px-12 lg:py-32">
@@ -550,8 +551,8 @@ export default function Home() {
                 </h3>
 
                 <p className="mt-3 max-w-sm text-base leading-7 text-[var(--wild-soft)]">
-                 Coffee, sweet orange, spearmint and vanilla for scrubbing off the day
-and taking five.
+                  Coffee, sweet orange, spearmint and vanilla for scrubbing off the day
+                  and taking five.
                 </p>
 
                 <p
@@ -573,173 +574,91 @@ and taking five.
         </div>
       </section>
 
-      {/* MARKETS */}
-<section id="markets" className="bg-[#e8e1d5]">
-  <div className="mx-auto grid max-w-[1600px] lg:grid-cols-[1.15fr_0.85fr]">
-    
-    {/* REAL MARKET PHOTO */}
-    <div className="relative min-h-[520px] lg:min-h-[760px]">
-      <Image
-        src="/images/wild-soul-market.jpg"
-        alt="Wild Soul market stall with handmade skincare, recovery products and jewellery"
-        fill
-        sizes="(max-width: 1024px) 100vw, 60vw"
-        className="object-cover"
-      />
-    </div>
+      <MarketsSection />
 
-    {/* COPY */}
-    <div className="flex items-center px-8 py-20 sm:px-14 sm:py-24 lg:px-20">
-      <div className="max-w-[560px]">
-        <p className="mb-6 text-xs font-semibold uppercase tracking-[0.3em] text-[var(--wild-earth)]">
-          Find Wild Soul Out in the Wild
-        </p>
+      {/* FOOTER */}
+      <footer className="bg-[var(--wild-forest)] text-[#f4eee4]">
+        <div className="mx-auto max-w-[1600px] px-8 py-16 sm:px-14 lg:px-20 lg:py-20">
+          <div className="grid gap-14 lg:grid-cols-[1.4fr_0.7fr_0.7fr]">
+            {/* BRAND */}
+            <div className="max-w-[520px]">
+              <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#c8aa8c]">
+                Wild Soul
+              </p>
 
-        <h2
-          className="text-[clamp(3.5rem,5vw,5.5rem)] font-normal leading-[0.95] tracking-[-0.035em] text-[var(--wild-forest)]"
-          style={serifFont}
-        >
-          Come find us
-          <br />
-          in person.
-        </h2>
+              <p
+                className="mt-5 text-[clamp(2.8rem,4vw,4.5rem)] font-normal leading-[0.95] tracking-[-0.035em]"
+                style={serifFont}
+              >
+                Take five.
+                <br />
+                <span className="italic text-[#d7b89a]">
+                  The rest can wait.
+                </span>
+              </p>
 
-        <p
-          className="mt-8 text-[1.7rem] font-normal italic leading-[1.35] text-[#704a35]"
-          style={serifFont}
-        >
-          Some things are just easier when you can pick them up, smell
-          them and try them for yourself.
-        </p>
+              <p className="mt-7 max-w-[430px] text-sm leading-7 text-[#f4eee4]/70 sm:text-base">
+                Small-batch body, bath, and skincare products made in
+                Queensland for real life.
+              </p>
+            </div>
 
-        <div className="mt-8 space-y-5 text-base leading-8 text-[var(--wild-soft)] sm:text-lg">
-          <p>
-            Wild Soul gets packed into the car and taken on the road too.
-            Markets are your chance to have a proper look around, ask
-            questions and find what actually suits you.
-          </p>
+            {/* EXPLORE */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#c8aa8c]">
+                Explore
+              </p>
 
-          <p>
-            Come say hello. Smell everything. Try the testers. You
-            don&apos;t have to know what you&apos;re looking for.
-          </p>
-        </div>
+              <nav className="mt-6 flex flex-col gap-4 text-sm text-[#f4eee4]/80 sm:text-base">
+                <a href="#shop" className="transition-opacity hover:opacity-60">
+                  Shop
+                </a>
+                <a href="/our-story" className="transition-opacity hover:opacity-60">
+                  Our Story
+                </a>
+                <a href="#markets" className="transition-opacity hover:opacity-60">
+                  Markets
+                </a>
+              </nav>
+            </div>
 
-        <div className="mt-12 border-t border-[var(--wild-earth)]/30 pt-8">
-          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[var(--wild-earth)]">
-            Upcoming Events
-          </p>
+            {/* HELP */}
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#c8aa8c]">
+                Help
+              </p>
 
-          <div className="mt-6">
-            <p
-              className="text-3xl font-normal text-[var(--wild-forest)]"
-              style={serifFont}
-            >
-              Bracknell Lodge
+              <nav className="mt-6 flex flex-col gap-4 text-sm text-[#f4eee4]/80 sm:text-base">
+                <a href="#" className="transition-opacity hover:opacity-60">
+                  Shipping
+                </a>
+                <a href="#" className="transition-opacity hover:opacity-60">
+                  Returns
+                </a>
+                <a href="#" className="transition-opacity hover:opacity-60">
+                  Contact
+                </a>
+                <a href="#" className="transition-opacity hover:opacity-60">
+                  Privacy
+                </a>
+                <a href="#" className="transition-opacity hover:opacity-60">
+                  Terms
+                </a>
+              </nav>
+            </div>
+          </div>
+
+          <div className="mt-16 flex flex-col gap-4 border-t border-white/15 pt-7 text-xs text-[#f4eee4]/55 sm:flex-row sm:items-center sm:justify-between">
+            <p>
+              © {new Date().getFullYear()} Wild Soul. Made in Queensland, Australia.
             </p>
 
-            <p className="mt-2 text-base font-medium text-[var(--wild-charcoal)]">
-              20 September · 12–4pm
-            </p>
-
-            <p className="mt-1 text-base leading-7 text-[var(--wild-soft)]">
-              56 Rosenbergers Rd, Wyreema QLD 4352
+            <p>
+              Built for the work. Made for the recovery.
             </p>
           </div>
         </div>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-{/* FOOTER */}
-<footer className="bg-[var(--wild-forest)] text-[#f4eee4]">
-  <div className="mx-auto max-w-[1600px] px-8 py-16 sm:px-14 lg:px-20 lg:py-20">
-
-    <div className="grid gap-14 lg:grid-cols-[1.4fr_0.7fr_0.7fr]">
-
-      {/* BRAND */}
-      <div className="max-w-[520px]">
-        <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#c8aa8c]">
-          Wild Soul
-        </p>
-
-        <p
-          className="mt-5 text-[clamp(2.8rem,4vw,4.5rem)] font-normal leading-[0.95] tracking-[-0.035em]"
-          style={serifFont}
-        >
-          Take five.
-          <br />
-          <span className="italic text-[#d7b89a]">
-            The rest can wait.
-          </span>
-        </p>
-
-        <p className="mt-7 max-w-[430px] text-sm leading-7 text-[#f4eee4]/70 sm:text-base">
-          Small-batch body, bath, and skincare products made in
-          Queensland for real life.
-        </p>
-      </div>
-
-      {/* EXPLORE */}
-      <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#c8aa8c]">
-          Explore
-        </p>
-
-        <nav className="mt-6 flex flex-col gap-4 text-sm text-[#f4eee4]/80 sm:text-base">
-          <a href="#shop" className="transition-opacity hover:opacity-60">
-            Shop
-          </a>
-          <a href="/our-story" className="transition-opacity hover:opacity-60">
-            Our Story
-          </a>
-          <a href="#markets" className="transition-opacity hover:opacity-60">
-            Markets
-          </a>
-        </nav>
-      </div>
-
-      {/* HELP */}
-      <div>
-        <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#c8aa8c]">
-          Help
-        </p>
-
-        <nav className="mt-6 flex flex-col gap-4 text-sm text-[#f4eee4]/80 sm:text-base">
-          <a href="#" className="transition-opacity hover:opacity-60">
-            Shipping
-          </a>
-          <a href="#" className="transition-opacity hover:opacity-60">
-            Returns
-          </a>
-          <a href="#" className="transition-opacity hover:opacity-60">
-            Contact
-          </a>
-          <a href="#" className="transition-opacity hover:opacity-60">
-            Privacy
-          </a>
-          <a href="#" className="transition-opacity hover:opacity-60">
-            Terms
-          </a>
-        </nav>
-      </div>
-    </div>
-
-    <div className="mt-16 flex flex-col gap-4 border-t border-white/15 pt-7 text-xs text-[#f4eee4]/55 sm:flex-row sm:items-center sm:justify-between">
-      <p>
-        © {new Date().getFullYear()} Wild Soul. Made in Queensland, Australia.
-      </p>
-
-      <p>
-        Built for the work. Made for the recovery.
-      </p>
-    </div>
-
-  </div>
-</footer>
-
+      </footer>
     </main>
   );
 }
