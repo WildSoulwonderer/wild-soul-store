@@ -13,9 +13,17 @@ export type StoreProduct = {
 
 export async function getStoreProducts(): Promise<StoreProduct[]> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
+  const key =
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 
-  if (!url || !key) return [];
+  if (!url || !key) {
+    console.error("Store product feed unavailable: missing Supabase environment variable", {
+      hasUrl: Boolean(url),
+      hasKey: Boolean(key),
+    });
+    return [];
+  }
 
   const response = await fetch(`${url}/rest/v1/rpc/get_store_products`, {
     method: "POST",
@@ -29,7 +37,8 @@ export async function getStoreProducts(): Promise<StoreProduct[]> {
   });
 
   if (!response.ok) {
-    console.error("Unable to load store products:", response.statusText);
+    const errorText = await response.text();
+    console.error("Unable to load store products:", response.status, errorText);
     return [];
   }
 
