@@ -1,23 +1,37 @@
 import Image from "next/image";
 import Link from "next/link";
-import AddToBagButton from "@/components/AddToBagButton";
-import BagCount from "@/components/BagCount";
+import { getStoreProducts, type StoreProduct } from "@/lib/store-products";
 
 const serifFont = {
   fontFamily: "var(--font-wild-serif), Georgia, 'Times New Roman', serif",
 };
 
-const collections = [
+type ShopProductLink = {
+  name: string;
+  href: string | null;
+};
+
+type CollectionDefinition = {
+  id: "body" | "bath" | "recovery" | "skin-oils";
+  name: string;
+  tagline: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  legacyProducts: string[];
+};
+
+const collectionDefinitions: CollectionDefinition[] = [
   {
     id: "body",
     name: "Body",
-    tagline: "Scrub off the day.",
+    tagline: "Made for skin that’s lived a little.",
     description:
-      "Scrubs, buff bars and everyday body care made for real skin, real routines and whatever five minutes you can steal.",
+      "Scrubs, butters, buff bars and everyday body care made for real skin, real routines and whatever five minutes you can steal.",
     image: "/images/wild-soul-body.png",
     imageAlt:
       "Wild Soul body care products in a warm relaxed bathroom setting",
-    products: [
+    legacyProducts: [
       "Wild Renewal",
       "Sunlit Bloom",
       "Desert Calm",
@@ -28,11 +42,6 @@ const collections = [
       "Morning Ember",
       "First Light",
       "Highland Mist",
-      "Highland Recovery",
-      "Petal & Plum",
-      "Ironwood",
-      "Red Dust",
-      "Golden Grove"
     ],
   },
   {
@@ -43,7 +52,7 @@ const collections = [
       "Simple bath soaks for tired bodies, long weeks and those rare moments when nobody needs anything from you.",
     image: "/images/wild-soul-bath.png",
     imageAlt: "Wild Soul bath soak beside a warm softly lit bath",
-    products: ["Highland Recovery", "Petal & Plum"],
+    legacyProducts: ["Highland Recovery", "Petal & Plum"],
   },
   {
     id: "recovery",
@@ -54,7 +63,7 @@ const collections = [
     image: "/images/wild-soul-recovery.png",
     imageAlt:
       "Wild Soul recovery balm on weathered timber in an Australian setting",
-    products: ["Bush Relief", "Misty Glen"],
+    legacyProducts: ["Bush Relief", "Misty Glen"],
   },
   {
     id: "skin-oils",
@@ -64,7 +73,7 @@ const collections = [
       "Botanical oils for face, body and beards, made to nourish, soften and give skin a little glow without making life complicated.",
     image: "/images/wild-soul-skin-oils-v3.png",
     imageAlt: "Wild Soul botanical skin oil in warm morning light",
-    products: ["Ironwood", "Red Dust", "Golden Grove"],
+    legacyProducts: ["Ironwood", "Red Dust", "Golden Grove"],
   },
 ];
 
@@ -91,7 +100,7 @@ const comingSoon = [
   },
 ];
 
-const productLinks: Record<string, string> = {
+const legacyProductLinks: Record<string, string> = {
   "Bush Relief": "/shop/bush-relief",
   "Misty Glen": "/shop/misty-glen",
   "First Light": "/shop/first-light",
@@ -107,7 +116,92 @@ const productLinks: Record<string, string> = {
   "Golden Grove": "/shop/golden-grove",
 };
 
-export default function ShopPage() {
+function getCollectionId(
+  category: string | null,
+): CollectionDefinition["id"] {
+  const value = (category ?? "").trim().toLowerCase();
+
+  if (
+    value === "bath" ||
+    value.includes("bath") ||
+    value.includes("soak")
+  ) {
+    return "bath";
+  }
+
+  if (
+    value === "recovery" ||
+    value.includes("recovery") ||
+    value.includes("balm")
+  ) {
+    return "recovery";
+  }
+
+  if (
+    value === "skin oils" ||
+    value === "skin oil" ||
+    value.includes("face oil") ||
+    value.includes("beard oil") ||
+    value.includes("face & beard") ||
+    value.includes("face and beard")
+  ) {
+    return "skin-oils";
+  }
+
+  return "body";
+}
+
+function buildCollectionProducts(
+  definition: CollectionDefinition,
+  liveProducts: StoreProduct[],
+): ShopProductLink[] {
+  const products: ShopProductLink[] =
+    definition.legacyProducts.map((name) => ({
+      name,
+      href: legacyProductLinks[name] ?? null,
+    }));
+
+  const seen = new Set(
+    products.map((product) =>
+      product.href
+        ? `href:${product.href}`
+        : `name:${product.name.toLowerCase()}`,
+    ),
+  );
+
+  for (const product of liveProducts) {
+    if (getCollectionId(product.category) !== definition.id) {
+      continue;
+    }
+
+    const href = `/shop/${product.store_slug}`;
+    const hrefKey = `href:${href}`;
+    const nameKey = `name:${product.name.toLowerCase()}`;
+
+    if (seen.has(hrefKey) || seen.has(nameKey)) {
+      continue;
+    }
+
+    products.push({
+      name: product.name,
+      href,
+    });
+
+    seen.add(hrefKey);
+    seen.add(nameKey);
+  }
+
+  return products;
+}
+
+export default async function ShopPage() {
+  const liveProducts = await getStoreProducts();
+
+  const collections = collectionDefinitions.map((definition) => ({
+    ...definition,
+    products: buildCollectionProducts(definition, liveProducts),
+  }));
+
   return (
     <main className="min-h-screen bg-[#f4eee4] text-[#243f35]">
       {/* HEADER */}
@@ -340,36 +434,32 @@ export default function ShopPage() {
                   {collection.description}
                 </p>
 
-               <div className="mt-10 flex flex-wrap gap-x-8 gap-y-4">
-  {collection.products.map((product) => {
-    const href = productLinks[product];
+                <div className="mt-10 flex flex-wrap gap-x-8 gap-y-4">
+                  {collection.products.map((product) => {
+                    if (product.href) {
+                      return (
+                        <Link
+                          key={`${collection.id}-${product.name}`}
+                          href={product.href}
+                          className="border-b border-[#f4eee4]/25 pb-2 text-lg text-[#f4eee4]/90 transition-colors hover:border-[#d5a27d] hover:text-[#d5a27d]"
+                          style={serifFont}
+                        >
+                          {product.name}
+                        </Link>
+                      );
+                    }
 
-    if (href) {
-      return (
-        <Link
-          key={product}
-          href={href}
-          className="border-b border-[#f4eee4]/25 pb-2 text-lg text-[#f4eee4]/90 transition-colors hover:border-[#d5a27d] hover:text-[#d5a27d]"
-          style={serifFont}
-        >
-          {product}
-        </Link>
-      );
-    }
-
-    return (
-      <span
-        key={product}
-        className="border-b border-[#f4eee4]/15 pb-2 text-lg text-[#f4eee4]/65"
-        style={serifFont}
-      >
-        {product}
-      </span>
-    );
-  })}
-</div>
-
-                
+                    return (
+                      <span
+                        key={`${collection.id}-${product.name}`}
+                        className="border-b border-[#f4eee4]/15 pb-2 text-lg text-[#f4eee4]/65"
+                        style={serifFont}
+                      >
+                        {product.name}
+                      </span>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           ))}
@@ -443,14 +533,12 @@ export default function ShopPage() {
           >
             Use the good stuff.
           </p>
-
           <p
             className="mt-4 text-[clamp(2rem,3.5vw,3.5rem)] italic text-[#704a35]"
             style={serifFont}
           >
             Tomorrow can bloody wait.
           </p>
-
           <p className="mx-auto mt-9 max-w-[650px] text-lg leading-9 text-[#5f574f]">
             Wild Soul is made to be used — in the shower, beside the bath, in
             the ute, in your work bag, at home or wherever life happens to find
@@ -467,7 +555,6 @@ export default function ShopPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#c8aa8c]">
                 Wild Soul
               </p>
-
               <p
                 className="mt-5 text-[clamp(2.8rem,4vw,4.5rem)] font-normal leading-[0.95]"
                 style={serifFont}
@@ -478,7 +565,6 @@ export default function ShopPage() {
                   The rest can wait.
                 </span>
               </p>
-
               <p className="mt-7 max-w-[430px] text-sm leading-7 text-[#f4eee4]/70 sm:text-base">
                 Small-batch body, bath and skincare products made in Queensland
                 for real life.
@@ -489,21 +575,14 @@ export default function ShopPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#c8aa8c]">
                 Explore
               </p>
-
               <nav className="mt-6 flex flex-col gap-4 text-sm text-[#f4eee4]/80 sm:text-base">
                 <Link href="/shop" className="transition-opacity hover:opacity-60">
                   Shop
                 </Link>
-                <Link
-                  href="/our-story"
-                  className="transition-opacity hover:opacity-60"
-                >
+                <Link href="/our-story" className="transition-opacity hover:opacity-60">
                   Our Story
                 </Link>
-                <Link
-                  href="/#markets"
-                  className="transition-opacity hover:opacity-60"
-                >
+                <Link href="/#markets" className="transition-opacity hover:opacity-60">
                   Markets
                 </Link>
               </nav>
@@ -513,7 +592,6 @@ export default function ShopPage() {
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#c8aa8c]">
                 Wild Soul
               </p>
-
               <p
                 className="mt-6 max-w-[260px] text-xl italic leading-relaxed text-[#f4eee4]/75"
                 style={serifFont}
@@ -526,11 +604,7 @@ export default function ShopPage() {
           </div>
 
           <div className="mt-16 flex flex-col gap-4 border-t border-white/15 pt-7 text-xs text-[#f4eee4]/55 sm:flex-row sm:items-center sm:justify-between">
-            <p>
-              © {new Date().getFullYear()} Wild Soul. Made in Queensland,
-              Australia.
-            </p>
-
+            <p>© {new Date().getFullYear()} Wild Soul. Made in Queensland, Australia.</p>
             <p>Take five. The rest can wait.</p>
           </div>
         </div>
