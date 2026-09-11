@@ -6,6 +6,7 @@ export type StoreMarket = {
   status: string | null;
 };
 
+// This storefront feed is intentionally dynamic so HQ market changes appear without code edits.
 export async function getStoreMarkets(): Promise<StoreMarket[]> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key =
