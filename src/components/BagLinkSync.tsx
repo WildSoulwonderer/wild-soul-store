@@ -20,11 +20,44 @@ function getStoredItemCount() {
   }
 }
 
+function syncLegacyProductLinks() {
+  const linkUpdates: Record<string, string> = {
+    "#bush-relief": "/shop/bush-relief",
+    "#misty-glen": "/shop/misty-glen",
+    "#wild-renewal": "/shop/wild-renewal",
+  };
+
+  for (const [oldHref, newHref] of Object.entries(linkUpdates)) {
+    document
+      .querySelectorAll<HTMLAnchorElement>(`a[href="${oldHref}"]`)
+      .forEach((link) => {
+        link.href = newHref;
+      });
+  }
+
+  const wildRenewalLinks = Array.from(
+    document.querySelectorAll<HTMLAnchorElement>('a[href="/shop/wild-renewal"]')
+  );
+
+  wildRenewalLinks.forEach((link) => {
+    const article = link.closest("article");
+    if (!article) return;
+
+    const price = Array.from(article.querySelectorAll<HTMLParagraphElement>("p")).find(
+      (paragraph) => paragraph.textContent?.trim() === "$29.95"
+    );
+
+    if (price) {
+      price.textContent = "$24.95";
+    }
+  });
+}
+
 export default function BagLinkSync() {
   const { itemCount } = useBag();
 
   useEffect(() => {
-    function syncBagHeaders() {
+    function syncStorefront() {
       const count = Math.max(itemCount, getStoredItemCount());
 
       const legacyBagLinks = document.querySelectorAll<HTMLAnchorElement>(
@@ -55,20 +88,22 @@ export default function BagLinkSync() {
         link.textContent = `Bag (${count})`;
         span.replaceWith(link);
       });
+
+      syncLegacyProductLinks();
     }
 
-    syncBagHeaders();
+    syncStorefront();
 
-    const observer = new MutationObserver(syncBagHeaders);
+    const observer = new MutationObserver(syncStorefront);
     observer.observe(document.body, { childList: true, subtree: true });
 
-    window.addEventListener("storage", syncBagHeaders);
+    window.addEventListener("storage", syncStorefront);
 
-    const timeout = window.setTimeout(syncBagHeaders, 250);
+    const timeout = window.setTimeout(syncStorefront, 250);
 
     return () => {
       observer.disconnect();
-      window.removeEventListener("storage", syncBagHeaders);
+      window.removeEventListener("storage", syncStorefront);
       window.clearTimeout(timeout);
     };
   }, [itemCount]);
