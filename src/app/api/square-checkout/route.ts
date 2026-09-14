@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import { products } from "@/lib/products";
-import { getParcelPostShippingCents } from "@/lib/shipping";
 
 type CheckoutItem = {
   id: string;
@@ -61,14 +60,6 @@ export async function POST(request: Request) {
       return { product, quantity: item.quantity };
     });
 
-    const totalWeightGrams = resolvedItems.reduce(
-      (total, { product, quantity }) =>
-        total + product.shippingWeightGrams * quantity,
-      0
-    );
-
-    const shippingCents = getParcelPostShippingCents(totalWeightGrams);
-
     const lineItems: SquareLineItem[] = resolvedItems.map(
       ({ product, quantity }) => ({
         name: product.name,
@@ -97,13 +88,6 @@ export async function POST(request: Request) {
           },
           checkout_options: {
             ask_for_shipping_address: true,
-            shipping_fee: {
-              name: "Parcel Post",
-              charge: {
-                amount: shippingCents,
-                currency: "AUD",
-              },
-            },
           },
         }),
       }
