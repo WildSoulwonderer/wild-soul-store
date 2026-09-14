@@ -6,10 +6,10 @@ import { usePathname } from "next/navigation";
 import { useBag } from "@/context/BagContext";
 
 const categories = [
-  ["Body", "/images/wild-soul-body.png", "/shop#body", "Scrubs, butters and everyday body care."],
-  ["Bath", "/images/wild-soul-bath.png", "/shop#bath", "Soaks and simple escapes for tired bodies."],
-  ["Recovery", "/images/wild-soul-recovery.png", "/shop#recovery", "Balms and recovery care for bodies that have done the work."],
-  ["Skin Oils", "/images/wild-soul-skin-oils-v3.png", "/shop#skin-oils", "Botanical oils for face, body and beards."],
+  ["Body", "/images/Wild_Renewal_Packaging.jpg", "/shop#body", "Scrubs, butters and everyday body care."],
+  ["Bath", "/images/Desert_Calm_Packaging.jpg", "/shop#bath", "Soaks and simple escapes for tired bodies."],
+  ["Recovery", "/images/Highland_Recovery_Packaging.jpg", "/shop#recovery", "Balms and recovery care for bodies that have done the work."],
+  ["Skin Oils", "/images/Golden_Grove_Packaging.jpg", "/shop#skin-oils", "Botanical oils for face, body and beards."],
 ] as const;
 
 export default function MobileHome() {
@@ -34,10 +34,10 @@ export default function MobileHome() {
         </div>
       </header>
 
-      <section className="relative min-h-[620px] overflow-hidden">
-        <img src="/images/wild-soul-hero.png" alt="Wild Soul Australian landscape" className="absolute inset-0 h-full w-full object-cover" loading="eager" fetchPriority="high" decoding="async" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#f5e6c7]/60 via-[#f5e6c7]/35 to-[#f5e6c7]/70" />
-        <div className="relative z-10 flex min-h-[620px] flex-col justify-center px-7 py-12">
+      <section className="relative min-h-[560px] overflow-hidden bg-gradient-to-br from-[#eadbc5] via-[#d9c8ad] to-[#91a08f]">
+        <div className="absolute -right-20 top-10 h-72 w-72 rounded-full bg-[#f4f0e8]/35 blur-3xl" />
+        <div className="absolute -left-24 bottom-0 h-80 w-80 rounded-full bg-[#704a35]/15 blur-3xl" />
+        <div className="relative z-10 flex min-h-[560px] flex-col justify-center px-7 py-12">
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-[#684532]">Made in Australia</p>
           <h1 className="wild-serif text-[4.8rem] font-medium leading-[0.72] tracking-[-0.05em] text-[#263b32]">
             <span className="block">Wild</span><span className="ml-14 block italic font-normal text-[#704a35]">Soul.</span>
@@ -55,7 +55,9 @@ export default function MobileHome() {
         <div className="mt-10 space-y-12">
           {categories.map(([name, image, href, description]) => (
             <Link key={name} href={href} className="block">
-              <img src={image} alt={`Wild Soul ${name}`} loading="lazy" decoding="async" className="aspect-[4/5] w-full bg-[#ded5c7] object-cover" />
+              <div className="aspect-[4/5] w-full overflow-hidden bg-[#ded5c7]">
+                <img src={image} alt={`Wild Soul ${name}`} loading="lazy" decoding="async" className="h-full w-full object-cover" />
+              </div>
               <h3 className="wild-serif mt-5 text-3xl text-[#263b32]">{name}</h3>
               <p className="mt-2 text-sm leading-6 text-[#7b796f]">{description}</p>
               <span className="mt-4 inline-block border-b border-[#9a684e] pb-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#9a684e]">Explore {name}</span>
