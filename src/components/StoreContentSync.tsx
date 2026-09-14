@@ -140,6 +140,97 @@ function renderNews(items: StorefrontContent[]) {
   comingSoonSection.parentNode?.insertBefore(section, comingSoonSection);
 }
 
+function renderMarkets() {
+  const comingSoonSection = findComingSoonSection();
+  if (!comingSoonSection) return;
+
+  document.getElementById("shop-markets")?.remove();
+
+  const section = document.createElement("section");
+  section.id = "shop-markets";
+  section.className = "bg-[#e8e1d5]";
+
+  const grid = document.createElement("div");
+  grid.className = "mx-auto grid max-w-[1600px] lg:grid-cols-[1.15fr_0.85fr]";
+
+  const imageWrap = document.createElement("div");
+  imageWrap.className = "min-h-[430px] lg:min-h-[700px]";
+  const image = document.createElement("img");
+  image.src = "/images/wild-soul-market.jpg";
+  image.alt = "Wild Soul market stall with handmade skincare, recovery products and jewellery";
+  image.loading = "lazy";
+  image.className = "h-full min-h-[430px] w-full object-cover lg:min-h-[700px]";
+  imageWrap.appendChild(image);
+
+  const copyWrap = document.createElement("div");
+  copyWrap.className = "flex items-center px-8 py-20 sm:px-14 sm:py-24 lg:px-20";
+  const copy = document.createElement("div");
+  copy.className = "max-w-[560px]";
+
+  const eyebrow = document.createElement("p");
+  eyebrow.className = "mb-6 text-xs font-semibold uppercase tracking-[0.3em] text-[#9a6545]";
+  eyebrow.textContent = "Find Wild Soul Out in the Wild";
+
+  const heading = document.createElement("h2");
+  heading.className = "text-[clamp(3.5rem,5vw,5.5rem)] leading-[0.95] text-[#243f35]";
+  heading.style.fontFamily = serif;
+  heading.append("Come find us", document.createElement("br"), "in person.");
+
+  const lead = document.createElement("p");
+  lead.className = "mt-8 text-[1.7rem] italic leading-[1.35] text-[#704a35]";
+  lead.style.fontFamily = serif;
+  lead.textContent = "Some things are just easier when you can pick them up, smell them and try them for yourself.";
+
+  const body = document.createElement("p");
+  body.className = "mt-8 text-base leading-8 text-[#655d55] sm:text-lg";
+  body.textContent = "Come say hello. Smell everything. Try the testers. You don’t have to know what you’re looking for.";
+
+  const events = document.createElement("div");
+  events.className = "mt-12 border-t border-[#704a35]/30 pt-8";
+  const eventsLabel = document.createElement("p");
+  eventsLabel.className = "text-xs font-semibold uppercase tracking-[0.25em] text-[#9a6545]";
+  eventsLabel.textContent = "Upcoming Events";
+
+  const eventList = document.createElement("div");
+  eventList.className = "mt-6 space-y-8";
+
+  const bracknell = document.createElement("article");
+  const bracknellTitle = document.createElement("p");
+  bracknellTitle.className = "text-3xl";
+  bracknellTitle.style.fontFamily = serif;
+  bracknellTitle.textContent = "Bracknell Lodge — Carnival of Flowers";
+  const bracknellDate = document.createElement("p");
+  bracknellDate.className = "mt-2 font-medium";
+  bracknellDate.textContent = "20 September 2026";
+  const bracknellPlace = document.createElement("p");
+  bracknellPlace.className = "mt-1 text-[#655d55]";
+  bracknellPlace.textContent = "Bracknell Lodge, Toowoomba";
+  bracknell.className = "border-b border-[#704a35]/20 pb-7";
+  bracknell.append(bracknellTitle, bracknellDate, bracknellPlace);
+
+  const pink = document.createElement("article");
+  const pinkTitle = document.createElement("p");
+  pinkTitle.className = "text-3xl";
+  pinkTitle.style.fontFamily = serif;
+  pinkTitle.textContent = "Pink Ladies Day";
+  const pinkDate = document.createElement("p");
+  pinkDate.className = "mt-2 font-medium";
+  pinkDate.textContent = "9 October 2026";
+  const pinkPlace = document.createElement("p");
+  pinkPlace.className = "mt-1 text-[#655d55]";
+  pinkPlace.textContent = "Dalby & Northern Downs Jockey Club";
+  pink.append(pinkTitle, pinkDate, pinkPlace);
+
+  eventList.append(bracknell, pink);
+  events.append(eventsLabel, eventList);
+  copy.append(eyebrow, heading, lead, body, events);
+  copyWrap.appendChild(copy);
+  grid.append(imageWrap, copyWrap);
+  section.appendChild(grid);
+
+  comingSoonSection.parentNode?.insertBefore(section, comingSoonSection);
+}
+
 export default function StoreContentSync() {
   const pathname = usePathname();
 
@@ -148,6 +239,7 @@ export default function StoreContentSync() {
 
     let cancelled = false;
 
+    renderMarkets();
     renderNews(fallbackNews);
     renderComingSoon(fallbackComingSoon);
 
