@@ -25,24 +25,30 @@ export async function getStoreProducts(): Promise<StoreProduct[]> {
     return [];
   }
 
-  const response = await fetch(`${url}/rest/v1/rpc/get_store_products`, {
-    method: "POST",
-    headers: {
-      apikey: key,
-      Authorization: `Bearer ${key}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ p_slug: null }),
-    cache: "no-store",
-  });
+  try {
+    const response = await fetch(`${url}/rest/v1/rpc/get_store_products`, {
+      method: "POST",
+      headers: {
+        apikey: key,
+        Authorization: `Bearer ${key}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ p_slug: null }),
+      cache: "no-store",
+      signal: AbortSignal.timeout(1500),
+    });
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error("Unable to load store products:", response.status, errorText);
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Unable to load store products:", response.status, errorText);
+      return [];
+    }
+
+    return (await response.json()) as StoreProduct[];
+  } catch (error) {
+    console.error("Store product feed timed out or was unavailable:", error);
     return [];
   }
-
-  return (await response.json()) as StoreProduct[];
 }
 
 export async function getStoreProduct(slug: string) {
