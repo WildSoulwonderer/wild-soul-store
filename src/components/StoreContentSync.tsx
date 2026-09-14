@@ -16,31 +16,33 @@ type StorefrontContent = {
 
 const serif = "var(--font-wild-serif), Georgia, 'Times New Roman', serif";
 
+const fallbackNews: StorefrontContent[] = [
+  { id: -1, section: "news", title: "New little luxuries have landed", label: "New at Wild Soul", body: "Desert Woods and Vanilla Glow whipped body soaps are joining the line-up alongside Vanilla Glow Shimmer Oil and our Bare and Wild Orange lip balms.", status: "New", display_order: 1, visible: true },
+  { id: -2, section: "news", title: "Bracknell Lodge is next", label: "Out in the Wild", body: "Wild Soul is heading to Bracknell Lodge in Toowoomba. Come smell everything, try the testers and see the new additions in person.", status: "Market News", display_order: 2, visible: true },
+  { id: -3, section: "news", title: "Earthbound is taking shape", label: "Behind the Scenes", body: "Earthbound is our Jesmonite homewares collection — earthy handmade pieces such as soap dishes and other practical little objects designed to sit alongside your Wild Soul favourites.", status: "In Development", display_order: 3, visible: true },
+];
+
+const fallbackComingSoon: StorefrontContent[] = [
+  { id: -4, section: "coming_soon", title: "Earthbound", label: "Jesmonite Homewares", body: "Earthy, handmade Jesmonite pieces including soap dishes and practical little objects made to live alongside your Wild Soul favourites.", status: "Coming Soon", display_order: 1, visible: true },
+  { id: -5, section: "coming_soon", title: "Bicarb-Free Stick Deodorant", label: "Everyday Care", body: "A Queensland-friendly deodorant stick is in development, with a bicarb-free formula and a proper Wild Soul scent profile.", status: "Testing", display_order: 2, visible: true },
+  { id: -6, section: "coming_soon", title: "Shampoo & Conditioner Bars", label: "Hair Care", body: "Low-waste hair care is being explored for a future Wild Soul release, with formulas and suppliers still being tested.", status: "In Development", display_order: 3, visible: true },
+];
+
 async function loadContent(): Promise<StorefrontContent[]> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const key =
-    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ||
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
-
+  const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   if (!url || !key) return [];
 
-  const response = await fetch(
-    `${url}/rest/v1/storefront_content?select=id,section,title,label,body,status,display_order,visible&visible=eq.true&order=section.asc,display_order.asc,id.asc`,
-    {
-      headers: {
-        apikey: key,
-        Authorization: `Bearer ${key}`,
-      },
-      cache: "no-store",
-    }
-  );
-
-  if (!response.ok) {
-    console.error("Unable to load storefront content", response.status);
+  try {
+    const response = await fetch(
+      `${url}/rest/v1/storefront_content?select=id,section,title,label,body,status,display_order,visible&visible=eq.true&order=section.asc,display_order.asc,id.asc`,
+      { headers: { apikey: key, Authorization: `Bearer ${key}` }, cache: "no-store" }
+    );
+    if (!response.ok) return [];
+    return (await response.json()) as StorefrontContent[];
+  } catch {
     return [];
   }
-
-  return (await response.json()) as StorefrontContent[];
 }
 
 function findComingSoonSection() {
@@ -84,16 +86,6 @@ function renderComingSoon(items: StorefrontContent[]) {
   const section = findComingSoonSection();
   if (!section || items.length === 0) return;
 
-  const intro = Array.from(section.querySelectorAll<HTMLParagraphElement>("p")).find((paragraph) =>
-    paragraph.textContent?.includes("pieces of Wild Soul currently finding their feet") ||
-    paragraph.textContent?.includes("next Wild Soul pieces")
-  );
-
-  if (intro) {
-    intro.textContent =
-      "There is always something being tested, tweaked or quietly taking shape behind the scenes. These are the next Wild Soul pieces currently finding their feet.";
-  }
-
   const existingGrid = Array.from(section.querySelectorAll<HTMLDivElement>("div")).find((div) =>
     div.className.includes("sm:grid-cols-2") && div.querySelector("article")
   );
@@ -104,10 +96,9 @@ function renderComingSoon(items: StorefrontContent[]) {
 
 function renderNews(items: StorefrontContent[]) {
   const comingSoonSection = findComingSoonSection();
-  if (!comingSoonSection) return;
+  if (!comingSoonSection || items.length === 0) return;
 
   document.getElementById("wild-soul-news")?.remove();
-  if (items.length === 0) return;
 
   const section = document.createElement("section");
   section.id = "wild-soul-news";
@@ -132,13 +123,11 @@ function renderNews(items: StorefrontContent[]) {
   italic.className = "italic text-[#704a35]";
   italic.textContent = "the Wild Soul bench.";
   heading.appendChild(italic);
-
   headingBlock.append(eyebrow, heading);
 
   const intro = document.createElement("p");
   intro.className = "max-w-[620px] text-lg leading-9 text-[#5f574f]";
-  intro.textContent =
-    "New batches, market days and the things taking shape behind the scenes — all in one spot, without making you hunt through social media to find them.";
+  intro.textContent = "New batches, market days and the things taking shape behind the scenes — all in one spot, without making you hunt through social media to find them.";
 
   headingGrid.append(headingBlock, intro);
 
@@ -159,12 +148,18 @@ export default function StoreContentSync() {
 
     let cancelled = false;
 
+    renderNews(fallbackNews);
+    renderComingSoon(fallbackComingSoon);
+
     async function sync() {
       const content = await loadContent();
       if (cancelled || content.length === 0) return;
 
-      renderNews(content.filter((item) => item.section === "news"));
-      renderComingSoon(content.filter((item) => item.section === "coming_soon"));
+      const news = content.filter((item) => item.section === "news");
+      const comingSoon = content.filter((item) => item.section === "coming_soon");
+
+      if (news.length > 0) renderNews(news);
+      if (comingSoon.length > 0) renderComingSoon(comingSoon);
     }
 
     const timer = window.setTimeout(() => void sync(), 50);
