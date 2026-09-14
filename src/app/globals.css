@@ -71,12 +71,11 @@ a {
 }
 
 @media (max-width: 767px) {
-  body.wild-mobile-home > main,
-  body.wild-mobile-home main {
-    display: none !important;
-  }
-
   #wild-mobile-home {
     display: block !important;
+  }
+
+  #wild-mobile-home + main {
+    display: none !important;
   }
 }
