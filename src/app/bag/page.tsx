@@ -7,6 +7,7 @@ import { useBag } from "@/context/BagContext";
 export default function BagPage() {
   const {
     items,
+    loaded,
     increaseQuantity,
     decreaseQuantity,
     removeItem,
@@ -62,7 +63,9 @@ export default function BagPage() {
     <main className="min-h-screen bg-[#f6f1e8] px-6 py-10 text-[#243f35]">
       <div className="mx-auto max-w-4xl">
         <div className="mb-10 flex items-center justify-between">
-          <h1 className="text-4xl font-semibold">Your Bag ({itemCount})</h1>
+          <h1 className="text-4xl font-semibold">
+            Your Bag{loaded ? ` (${itemCount})` : ""}
+          </h1>
 
           <Link
             href="/shop"
@@ -72,7 +75,11 @@ export default function BagPage() {
           </Link>
         </div>
 
-        {items.length === 0 ? (
+        {!loaded ? (
+          <div className="rounded-2xl border border-black/10 bg-white/40 p-8">
+            <p className="text-lg">Loading your bag…</p>
+          </div>
+        ) : items.length === 0 ? (
           <div className="rounded-2xl border border-black/10 bg-white/40 p-8">
             <p className="text-lg">Your bag is empty.</p>
           </div>
