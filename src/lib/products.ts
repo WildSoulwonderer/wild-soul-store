@@ -89,6 +89,41 @@ export const products = {
     price: 24.95,
     shippingWeightGrams: 63,
   },
+
+  "desert-woods-whipped-body-soap": {
+    id: "desert-woods-whipped-body-soap",
+    name: "Desert Woods Whipped Body Soap",
+    price: 15,
+    shippingWeightGrams: 220,
+  },
+
+  "vanilla-glow-whipped-body-soap": {
+    id: "vanilla-glow-whipped-body-soap",
+    name: "Vanilla Glow Whipped Body Soap",
+    price: 15,
+    shippingWeightGrams: 220,
+  },
+
+  "vanilla-glow-shimmer-oil": {
+    id: "vanilla-glow-shimmer-oil",
+    name: "Vanilla Glow Shimmer Oil",
+    price: 8,
+    shippingWeightGrams: 63,
+  },
+
+  "bare-lip-balm": {
+    id: "bare-lip-balm",
+    name: "Bare Nourishing Lip Balm",
+    price: 6,
+    shippingWeightGrams: 10,
+  },
+
+  "wild-orange-lip-balm": {
+    id: "wild-orange-lip-balm",
+    name: "Wild Orange Orange Cream Lip Balm",
+    price: 6,
+    shippingWeightGrams: 10,
+  },
 } as const;
 
 export type ProductId = keyof typeof products;
