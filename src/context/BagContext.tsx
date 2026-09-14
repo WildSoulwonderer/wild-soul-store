@@ -18,6 +18,7 @@ export type BagItem = {
 type BagContextType = {
   items: BagItem[];
   itemCount: number;
+  loaded: boolean;
   addItem: (item: Omit<BagItem, "quantity">) => void;
   removeItem: (id: string) => void;
   increaseQuantity: (id: string) => void;
@@ -36,7 +37,8 @@ export function BagProvider({ children }: { children: ReactNode }) {
       const savedBag = window.localStorage.getItem("wild-soul-bag");
 
       if (savedBag) {
-        setItems(JSON.parse(savedBag));
+        const parsed = JSON.parse(savedBag);
+        if (Array.isArray(parsed)) setItems(parsed);
       }
     } catch {
       // If stored bag data is invalid, start with an empty bag.
@@ -111,6 +113,7 @@ export function BagProvider({ children }: { children: ReactNode }) {
       value={{
         items,
         itemCount,
+        loaded,
         addItem,
         removeItem,
         increaseQuantity,
