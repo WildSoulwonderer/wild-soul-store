@@ -14,42 +14,47 @@ export default function BagPage() {
 
   const [loading, setLoading] = useState(false);
 
-async function handleCheckout() {
-  try {
-    setLoading(true);
+  async function handleCheckout() {
+    try {
+      setLoading(true);
 
-    const response = await fetch("/api/square-checkout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-  items: items.map((item) => ({
-    id: item.id,
-    quantity: item.quantity,
-  })),
-}),
-    });
+      const response = await fetch("/api/square-checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: items.map((item) => ({
+            id: item.id,
+            quantity: item.quantity,
+          })),
+        }),
+      });
 
-    const data = await response.json();
+      const data = await response.json();
 
-    if (!response.ok || !data.url) {
-      console.error(data);
+      if (!response.ok || !data.url) {
+        console.error(data);
+        alert("Checkout could not be started. Please try again.");
+        return;
+      }
+
+      window.location.href = data.url;
+    } catch (error) {
+      console.error(error);
       alert("Checkout could not be started. Please try again.");
-      return;
+    } finally {
+      setLoading(false);
     }
-
-    window.location.href = data.url;
-  } catch (error) {
-    console.error(error);
-    alert("Checkout could not be started. Please try again.");
-  } finally {
-    setLoading(false);
   }
-}
 
   const subtotal = items.reduce(
     (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+  const itemCount = items.reduce(
+    (total, item) => total + item.quantity,
     0
   );
 
@@ -57,7 +62,7 @@ async function handleCheckout() {
     <main className="min-h-screen bg-[#f6f1e8] px-6 py-10 text-[#243f35]">
       <div className="mx-auto max-w-4xl">
         <div className="mb-10 flex items-center justify-between">
-          <h1 className="text-4xl font-semibold">Your Bag</h1>
+          <h1 className="text-4xl font-semibold">Your Bag ({itemCount})</h1>
 
           <Link
             href="/shop"
@@ -118,20 +123,20 @@ async function handleCheckout() {
             ))}
 
             <div className="mt-8 border-t border-black/10 pt-6">
-  <div className="flex items-center justify-between text-xl font-semibold">
-    <span>Subtotal</span>
-    <span>${subtotal.toFixed(2)}</span>
-  </div>
+              <div className="flex items-center justify-between text-xl font-semibold">
+                <span>Subtotal</span>
+                <span>${subtotal.toFixed(2)}</span>
+              </div>
 
- <button
-  type="button"
-  onClick={handleCheckout}
-  disabled={loading}
-  className="mt-6 inline-flex min-h-14 w-full items-center justify-center bg-[#243f35] px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-[#1c332b] disabled:cursor-wait disabled:opacity-60"
->
-  {loading ? "Opening Checkout..." : "Checkout"}
-</button>
-</div>
+              <button
+                type="button"
+                onClick={handleCheckout}
+                disabled={loading}
+                className="mt-6 inline-flex min-h-14 w-full items-center justify-center bg-[#243f35] px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition-colors hover:bg-[#1c332b] disabled:cursor-wait disabled:opacity-60"
+              >
+                {loading ? "Opening Checkout..." : "Checkout"}
+              </button>
+            </div>
           </div>
         )}
       </div>
