@@ -60,6 +60,7 @@ a {
   background: var(--wild-forest);
   color: var(--wild-cream);
 }
+
 .wild-serif {
   font-family: var(--font-wild-serif), Georgia, "Times New Roman", serif;
 }
@@ -67,4 +68,45 @@ a {
 .wild-serif-italic {
   font-family: var(--font-wild-serif), Georgia, "Times New Roman", serif;
   font-style: italic;
+}
+
+@media (max-width: 639px) {
+  header > div {
+    min-height: 76px;
+    height: 76px;
+  }
+
+  header a > span:first-child {
+    font-size: 1.35rem;
+    letter-spacing: 0.2em;
+  }
+
+  main > section:first-of-type {
+    min-height: auto;
+  }
+
+  main > section:first-of-type > div:last-child {
+    min-height: auto;
+    padding-top: 3.5rem;
+    padding-bottom: 4.5rem;
+  }
+
+  main > section:first-of-type h1 {
+    font-size: clamp(4rem, 20vw, 5.2rem);
+    line-height: 0.72;
+  }
+
+  main > section:first-of-type h1 + p {
+    margin-top: 2.5rem;
+    font-size: 1.65rem;
+  }
+
+  main > section:first-of-type h1 + p + p {
+    font-size: 1.4rem;
+  }
+
+  main > section:first-of-type a,
+  main > section:first-of-type button {
+    min-height: 48px;
+  }
 }
