@@ -80,15 +80,6 @@ export async function POST(request: Request) {
       })
     );
 
-    lineItems.push({
-      name: "Shipping — Parcel Post",
-      quantity: "1",
-      base_price_money: {
-        amount: shippingCents,
-        currency: "AUD",
-      },
-    });
-
     const response = await fetch(
       `${getSquareBaseUrl()}/v2/online-checkout/payment-links`,
       {
@@ -106,6 +97,13 @@ export async function POST(request: Request) {
           },
           checkout_options: {
             ask_for_shipping_address: true,
+            shipping_fee: {
+              name: "Parcel Post",
+              charge: {
+                amount: shippingCents,
+                currency: "AUD",
+              },
+            },
           },
         }),
       }
