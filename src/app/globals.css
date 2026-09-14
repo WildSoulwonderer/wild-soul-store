@@ -69,3 +69,14 @@ a {
   font-family: var(--font-wild-serif), Georgia, "Times New Roman", serif;
   font-style: italic;
 }
+
+@media (max-width: 767px) {
+  body.wild-mobile-home > main,
+  body.wild-mobile-home main {
+    display: none !important;
+  }
+
+  #wild-mobile-home {
+    display: block !important;
+  }
+}
