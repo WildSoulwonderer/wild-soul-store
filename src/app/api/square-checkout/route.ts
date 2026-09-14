@@ -17,6 +17,13 @@ type SquareLineItem = {
   };
 };
 
+function getSquareBaseUrl() {
+  const environment = (process.env.SQUARE_ENVIRONMENT || "sandbox").toLowerCase();
+  return environment === "production"
+    ? "https://connect.squareup.com"
+    : "https://connect.squareupsandbox.com";
+}
+
 export async function POST(request: Request) {
   try {
     const { items } = (await request.json()) as {
@@ -34,10 +41,7 @@ export async function POST(request: Request) {
     }
 
     if (!Array.isArray(items) || items.length === 0) {
-      return NextResponse.json(
-        { error: "Your bag is empty." },
-        { status: 400 }
-      );
+      return NextResponse.json({ error: "Your bag is empty." }, { status: 400 });
     }
 
     const hasInvalidQuantity = items.some(
@@ -53,11 +57,7 @@ export async function POST(request: Request) {
 
     const resolvedItems = items.map((item) => {
       const product = products[item.id as keyof typeof products];
-
-      if (!product) {
-        throw new Error(`Unknown product: ${item.id}`);
-      }
-
+      if (!product) throw new Error(`Unknown product: ${item.id}`);
       return { product, quantity: item.quantity };
     });
 
@@ -90,7 +90,7 @@ export async function POST(request: Request) {
     });
 
     const response = await fetch(
-      "https://connect.squareupsandbox.com/v2/online-checkout/payment-links",
+      `${getSquareBaseUrl()}/v2/online-checkout/payment-links`,
       {
         method: "POST",
         headers: {
@@ -115,7 +115,6 @@ export async function POST(request: Request) {
 
     if (!response.ok) {
       console.error("Square error:", data);
-
       return NextResponse.json(
         {
           error: "Square checkout could not be created.",
@@ -125,12 +124,17 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json({
-      url: data.payment_link?.url,
-    });
+    const url = data.payment_link?.url;
+    if (!url) {
+      return NextResponse.json(
+        { error: "Square checkout did not return a payment link." },
+        { status: 502 }
+      );
+    }
+
+    return NextResponse.json({ url });
   } catch (error) {
     console.error("Checkout error:", error);
-
     return NextResponse.json(
       { error: "Something went wrong creating checkout." },
       { status: 500 }
