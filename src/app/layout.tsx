@@ -3,6 +3,7 @@ import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { BagProvider } from "@/context/BagContext";
 import BagLinkSync from "@/components/BagLinkSync";
+import MobileStoreNav from "@/components/MobileStoreNav";
 
 const fraunces = Fraunces({
   variable: "--font-wild-serif",
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body>
         <BagProvider>
           <BagLinkSync />
+          <MobileStoreNav />
           {children}
         </BagProvider>
       </body>
