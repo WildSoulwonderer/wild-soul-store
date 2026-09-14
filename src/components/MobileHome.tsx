@@ -6,10 +6,10 @@ import { usePathname } from "next/navigation";
 import { useBag } from "@/context/BagContext";
 
 const categories = [
-  ["Body", "/images/First_Light_Hero.png", "/shop#body", "Scrubs, butters and everyday body care."],
-  ["Bath", "/images/Desert_Calm_Hero.jpg", "/shop#bath", "Soaks and simple escapes for tired bodies."],
-  ["Recovery", "/images/Highland_Recovery_Hero.jpg", "/shop#recovery", "Balms and recovery care for bodies that have done the work."],
-  ["Skin Oils", "/images/Golden_Grove_Hero.jpg", "/shop#skin-oils", "Botanical oils for face, body and beards."],
+  ["Body", "/images/wild-soul-body.png", "/shop#body", "Scrubs, butters and everyday body care."],
+  ["Bath", "/images/wild-soul-bath.png", "/shop#bath", "Soaks and simple escapes for tired bodies."],
+  ["Recovery", "/images/wild-soul-recovery.png", "/shop#recovery", "Balms and recovery care for bodies that have done the work."],
+  ["Skin Oils", "/images/wild-soul-skin-oils-v3.png", "/shop#skin-oils", "Botanical oils for face, body and beards."],
 ] as const;
 
 export default function MobileHome() {
@@ -35,7 +35,7 @@ export default function MobileHome() {
       </header>
 
       <section className="relative min-h-[620px] overflow-hidden">
-        <img src="/images/Highland_Mist_Hero.jpg" alt="Wild Soul Australian landscape" className="absolute inset-0 h-full w-full object-cover" loading="eager" />
+        <img src="/images/wild-soul-hero.png" alt="Wild Soul Australian landscape" className="absolute inset-0 h-full w-full object-cover" loading="eager" fetchPriority="high" decoding="async" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#f5e6c7]/60 via-[#f5e6c7]/35 to-[#f5e6c7]/70" />
         <div className="relative z-10 flex min-h-[620px] flex-col justify-center px-7 py-12">
           <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-[#684532]">Made in Australia</p>
@@ -55,7 +55,7 @@ export default function MobileHome() {
         <div className="mt-10 space-y-12">
           {categories.map(([name, image, href, description]) => (
             <Link key={name} href={href} className="block">
-              <img src={image} alt={`Wild Soul ${name}`} loading="eager" className="aspect-[4/5] w-full bg-[#ded5c7] object-cover" />
+              <img src={image} alt={`Wild Soul ${name}`} loading="lazy" decoding="async" className="aspect-[4/5] w-full bg-[#ded5c7] object-cover" />
               <h3 className="wild-serif mt-5 text-3xl text-[#263b32]">{name}</h3>
               <p className="mt-2 text-sm leading-6 text-[#7b796f]">{description}</p>
               <span className="mt-4 inline-block border-b border-[#9a684e] pb-1 text-xs font-semibold uppercase tracking-[0.16em] text-[#9a684e]">Explore {name}</span>
