@@ -148,7 +148,6 @@ export default async function StoreProductPage({
 
   return (
     <main className="min-h-screen bg-[#f4eee4] text-[#243f35]">
-      {/* HEADER */}
       <header className="relative z-30 border-b border-[#243f35]/10 bg-[#f4eee4]">
         <div className="mx-auto flex h-[92px] max-w-[1600px] items-center justify-between px-6 sm:px-10 lg:px-12">
           <Link href="/" className="flex items-center gap-5">
@@ -234,7 +233,6 @@ export default async function StoreProductPage({
         </div>
       </header>
 
-      {/* PRODUCT HERO */}
       <section className="px-7 py-16 sm:px-12 sm:py-20 lg:px-20 lg:py-24">
         <div className="mx-auto grid max-w-[1450px] gap-14 lg:grid-cols-[1.08fr_0.92fr] lg:items-center">
           <div>
@@ -283,7 +281,7 @@ export default async function StoreProductPage({
 
             {inStock ? (
               <AddToBagButton
-                id={product.id}
+                id={product.store_slug}
                 name={product.name}
                 price={Number(product.retail_price ?? 0)}
               />
@@ -300,7 +298,6 @@ export default async function StoreProductPage({
         </div>
       </section>
 
-      {/* PRODUCT STORY */}
       <section className="bg-[#243f35] text-[#f4eee4]">
         <div className="mx-auto grid max-w-[1450px] gap-14 px-7 py-24 sm:px-12 sm:py-32 lg:grid-cols-[0.85fr_1.15fr] lg:px-20">
           <div>
@@ -338,7 +335,6 @@ export default async function StoreProductPage({
         </div>
       </section>
 
-      {/* HOW TO USE */}
       <section className="px-7 py-24 sm:px-12 sm:py-32 lg:px-20">
         <div className="mx-auto grid max-w-[1450px] gap-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
@@ -392,7 +388,6 @@ export default async function StoreProductPage({
         </div>
       </section>
 
-      {/* SIMPLE CARE */}
       <section className="bg-[#e8e1d5] px-7 py-24 sm:px-12 sm:py-32 lg:px-20">
         <div className="mx-auto grid max-w-[1450px] gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
@@ -432,33 +427,6 @@ export default async function StoreProductPage({
         </div>
       </section>
 
-      {/* CLOSING */}
-      <section className="bg-[#f4eee4] px-7 py-28 text-center sm:px-12 sm:py-36">
-        <div className="mx-auto max-w-[850px]">
-          <p
-            className="text-[clamp(3.6rem,6vw,6rem)] font-normal leading-[0.92] text-[#243f35]"
-            style={serifFont}
-          >
-            Use the good stuff.
-          </p>
-
-          <p
-            className="mt-4 text-[clamp(2rem,3.5vw,3.4rem)] italic text-[#704a35]"
-            style={serifFont}
-          >
-            Tomorrow can bloody wait.
-          </p>
-
-          <Link
-            href="/shop"
-            className="mt-10 inline-block border-b border-[#704a35] pb-1 text-xs font-semibold uppercase tracking-[0.2em] text-[#704a35]"
-          >
-            Back to Shop
-          </Link>
-        </div>
-      </section>
-
-      {/* FOOTER */}
       <footer className="bg-[#243f35] text-[#f4eee4]">
         <div className="mx-auto max-w-[1600px] px-8 py-16 sm:px-14 lg:px-20 lg:py-20">
           <div className="grid gap-14 lg:grid-cols-[1.4fr_0.7fr_0.7fr]">
@@ -466,7 +434,6 @@ export default async function StoreProductPage({
               <p className="text-xs font-semibold uppercase tracking-[0.32em] text-[#c8aa8c]">
                 Wild Soul
               </p>
-
               <p
                 className="mt-5 text-[clamp(2.8rem,4vw,4.5rem)] font-normal leading-[0.95]"
                 style={serifFont}
@@ -477,10 +444,8 @@ export default async function StoreProductPage({
                   The rest can wait.
                 </span>
               </p>
-
               <p className="mt-7 max-w-[430px] text-sm leading-7 text-[#f4eee4]/70 sm:text-base">
-                Small-batch body, bath and skincare products
-                made in Queensland for real life.
+                Small-batch body, bath and skincare products made in Queensland for real life.
               </p>
             </div>
 
@@ -488,26 +453,14 @@ export default async function StoreProductPage({
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#c8aa8c]">
                 Explore
               </p>
-
               <nav className="mt-6 flex flex-col gap-4 text-sm text-[#f4eee4]/80 sm:text-base">
-                <Link
-                  href="/shop"
-                  className="transition-opacity hover:opacity-60"
-                >
+                <Link href="/shop" className="transition-opacity hover:opacity-60">
                   Shop
                 </Link>
-
-                <Link
-                  href="/our-story"
-                  className="transition-opacity hover:opacity-60"
-                >
+                <Link href="/our-story" className="transition-opacity hover:opacity-60">
                   Our Story
                 </Link>
-
-                <Link
-                  href="/#markets"
-                  className="transition-opacity hover:opacity-60"
-                >
+                <Link href="/#markets" className="transition-opacity hover:opacity-60">
                   Markets
                 </Link>
               </nav>
@@ -517,7 +470,6 @@ export default async function StoreProductPage({
               <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#c8aa8c]">
                 Wild Soul
               </p>
-
               <p
                 className="mt-6 max-w-[260px] text-xl italic leading-relaxed text-[#f4eee4]/75"
                 style={serifFont}
@@ -530,11 +482,7 @@ export default async function StoreProductPage({
           </div>
 
           <div className="mt-16 flex flex-col gap-4 border-t border-white/15 pt-7 text-xs text-[#f4eee4]/55 sm:flex-row sm:items-center sm:justify-between">
-            <p>
-              © {new Date().getFullYear()} Wild Soul. Made in
-              Queensland, Australia.
-            </p>
-
+            <p>© {new Date().getFullYear()} Wild Soul. Made in Queensland, Australia.</p>
             <p>Take five. The rest can wait.</p>
           </div>
         </div>
