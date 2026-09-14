@@ -3,6 +3,7 @@ import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { BagProvider } from "@/context/BagContext";
 import BagLinkSync from "@/components/BagLinkSync";
+import StoreContentSync from "@/components/StoreContentSync";
 
 const fraunces = Fraunces({
   variable: "--font-wild-serif",
@@ -30,13 +31,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${fraunces.variable} ${inter.variable}`}
-    >
+    <html lang="en" className={`${fraunces.variable} ${inter.variable}`}>
       <body>
         <BagProvider>
           <BagLinkSync />
+          <StoreContentSync />
           {children}
         </BagProvider>
       </body>
