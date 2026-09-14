@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import AddToBagButton from "@/components/AddToBagButton";
+import BagCount from "@/components/BagCount";
 
 const serifFont = {
   fontFamily: "var(--font-wild-serif), Georgia, 'Times New Roman', serif",
@@ -78,7 +79,7 @@ export default function WildRenewalPage() {
 
             <span className="h-8 w-px bg-[#243f35]/30" />
 
-            <span className="opacity-60">Bag (0)</span>
+            <BagCount />
           </nav>
 
           <button
