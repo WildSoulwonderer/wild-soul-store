@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import { products } from "@/lib/products";
+import { getParcelPostShippingCents } from "@/lib/shipping";
 
 type CheckoutItem = {
   id: string;
@@ -31,17 +32,51 @@ export async function POST(request: Request) {
     }
 
     const hasInvalidQuantity = items.some(
-  (item) =>
-    !Number.isInteger(item.quantity) ||
-    item.quantity < 1
-);
+      (item) => !Number.isInteger(item.quantity) || item.quantity < 1
+    );
 
-if (hasInvalidQuantity) {
-  return NextResponse.json(
-    { error: "Invalid product quantity." },
-    { status: 400 }
-  );
-}
+    if (hasInvalidQuantity) {
+      return NextResponse.json(
+        { error: "Invalid product quantity." },
+        { status: 400 }
+      );
+    }
+
+    const resolvedItems = items.map((item) => {
+      const product = products[item.id as keyof typeof products];
+
+      if (!product) {
+        throw new Error(`Unknown product: ${item.id}`);
+      }
+
+      return { product, quantity: item.quantity };
+    });
+
+    const totalWeightGrams = resolvedItems.reduce(
+      (total, { product, quantity }) =>
+        total + product.shippingWeightGrams * quantity,
+      0
+    );
+
+    const shippingCents = getParcelPostShippingCents(totalWeightGrams);
+
+    const lineItems = resolvedItems.map(({ product, quantity }) => ({
+      name: product.name,
+      quantity: String(quantity),
+      base_price_money: {
+        amount: Math.round(product.price * 100),
+        currency: "AUD",
+      },
+    }));
+
+    lineItems.push({
+      name: "Shipping — Parcel Post",
+      quantity: "1",
+      base_price_money: {
+        amount: shippingCents,
+        currency: "AUD",
+      },
+    });
 
     const response = await fetch(
       "https://connect.squareupsandbox.com/v2/online-checkout/payment-links",
@@ -56,22 +91,7 @@ if (hasInvalidQuantity) {
           idempotency_key: randomUUID(),
           order: {
             location_id: locationId,
-           line_items: items.map((item) => {
-  const product = products[item.id as keyof typeof products];
-
-  if (!product) {
-    throw new Error(`Unknown product: ${item.id}`);
-  }
-
-  return {
-    name: product.name,
-    quantity: String(item.quantity),
-    base_price_money: {
-      amount: Math.round(product.price * 100),
-      currency: "AUD",
-    },
-  };
-}),
+            line_items: lineItems,
           },
           checkout_options: {
             ask_for_shipping_address: true,
