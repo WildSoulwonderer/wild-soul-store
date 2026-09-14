@@ -8,6 +8,15 @@ type CheckoutItem = {
   quantity: number;
 };
 
+type SquareLineItem = {
+  name: string;
+  quantity: string;
+  base_price_money: {
+    amount: number;
+    currency: "AUD";
+  };
+};
+
 export async function POST(request: Request) {
   try {
     const { items } = (await request.json()) as {
@@ -60,14 +69,16 @@ export async function POST(request: Request) {
 
     const shippingCents = getParcelPostShippingCents(totalWeightGrams);
 
-    const lineItems = resolvedItems.map(({ product, quantity }) => ({
-      name: product.name,
-      quantity: String(quantity),
-      base_price_money: {
-        amount: Math.round(product.price * 100),
-        currency: "AUD",
-      },
-    }));
+    const lineItems: SquareLineItem[] = resolvedItems.map(
+      ({ product, quantity }) => ({
+        name: product.name,
+        quantity: String(quantity),
+        base_price_money: {
+          amount: Math.round(product.price * 100),
+          currency: "AUD",
+        },
+      })
+    );
 
     lineItems.push({
       name: "Shipping — Parcel Post",
