@@ -6,7 +6,7 @@ export type StoreMarket = {
   status: string | null;
 };
 
-// This storefront feed is intentionally dynamic so HQ market changes appear without code edits.
+// Keep the storefront usable even if Supabase/HQ is temporarily slow or unavailable.
 export async function getStoreMarkets(): Promise<StoreMarket[]> {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
   const key =
@@ -18,25 +18,31 @@ export async function getStoreMarkets(): Promise<StoreMarket[]> {
     return [];
   }
 
-  const response = await fetch(`${url}/rest/v1/rpc/get_store_markets`, {
-    method: "POST",
-    headers: {
-      apikey: key,
-      Authorization: `Bearer ${key}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({}),
-    cache: "no-store",
-  });
+  try {
+    const response = await fetch(`${url}/rest/v1/rpc/get_store_markets`, {
+      method: "POST",
+      headers: {
+        apikey: key,
+        Authorization: `Bearer ${key}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({}),
+      cache: "no-store",
+      signal: AbortSignal.timeout(1500),
+    });
 
-  if (!response.ok) {
-    console.error(
-      "Unable to load store markets:",
-      response.status,
-      response.statusText,
-    );
+    if (!response.ok) {
+      console.error(
+        "Unable to load store markets:",
+        response.status,
+        response.statusText,
+      );
+      return [];
+    }
+
+    return (await response.json()) as StoreMarket[];
+  } catch (error) {
+    console.error("Store markets timed out or were unavailable:", error);
     return [];
   }
-
-  return (await response.json()) as StoreMarket[];
 }
