@@ -265,60 +265,6 @@ export default async function ShopPage() {
         </div>
       </section>
 
-      <section className="px-7 py-20 sm:px-12 sm:py-28 lg:px-20">
-        <div className="mx-auto max-w-[1450px]">
-          <div className="mb-14 max-w-[800px]">
-            <p className="mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-[#9a6545]">Find Your Five Minutes</p>
-            <h2 className="text-[clamp(3rem,5vw,5.8rem)] font-normal leading-[0.92] text-[#243f35]" style={serifFont}>
-              Start wherever<br /><span className="italic text-[#704a35]">you need it most.</span>
-            </h2>
-          </div>
-
-          <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-4">
-            {collections.map((collection, index) => (
-              <a key={collection.id} href={`#${collection.id}`} className={`group block ${index % 2 === 1 ? "lg:mt-14" : ""}`}>
-                <div className="aspect-[4/5] overflow-hidden bg-[#ded5c7]">
-                  <img src={collection.image} alt={collection.imageAlt} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]" />
-                </div>
-                <div className="mt-5">
-                  <h3 className="text-3xl font-normal text-[#243f35]" style={serifFont}>{collection.name}</h3>
-                  <p className="mt-2 text-xl italic text-[#704a35]" style={serifFont}>{collection.tagline}</p>
-                  <span className="mt-5 inline-block border-b border-[#704a35] pb-1 text-xs font-semibold uppercase tracking-[0.18em] text-[#704a35]">Explore {collection.name}</span>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#243f35] text-[#f4eee4]">
-        <div className="mx-auto max-w-[1450px] px-7 py-20 sm:px-12 sm:py-28 lg:px-20">
-          {collections.map((collection, index) => (
-            <div key={collection.id} id={collection.id} className={`grid scroll-mt-24 gap-10 py-16 first:pt-0 last:pb-0 lg:grid-cols-[0.8fr_1.2fr] ${index !== collections.length - 1 ? "border-b border-[#f4eee4]/15" : ""}`}>
-              <div>
-                <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-[#c88f68]">Wild Soul {collection.name}</p>
-                <h2 className="text-[clamp(3.2rem,5vw,5.8rem)] font-normal leading-[0.9] text-[#f4eee4]" style={serifFont}>{collection.name}</h2>
-                <p className="mt-5 text-2xl italic leading-snug text-[#d5a27d]" style={serifFont}>{collection.tagline}</p>
-              </div>
-              <div className="lg:pt-4">
-                <p className="max-w-[700px] text-base leading-8 text-[#f4eee4]/75 sm:text-lg sm:leading-9">{collection.description}</p>
-                <div className="mt-9 flex flex-wrap gap-x-8 gap-y-4">
-                  {collection.products.map((product) =>
-                    product.href ? (
-                      <Link key={`${collection.id}-${product.name}`} href={product.href} className="border-b border-[#f4eee4]/25 pb-2 text-lg text-[#f4eee4]/90 transition-colors hover:border-[#d5a27d] hover:text-[#d5a27d]" style={serifFont}>
-                        {product.name}
-                      </Link>
-                    ) : (
-                      <span key={`${collection.id}-${product.name}`} className="border-b border-[#f4eee4]/15 pb-2 text-lg text-[#f4eee4]/65" style={serifFont}>{product.name}</span>
-                    ),
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       <section className="bg-[#e8e1d5] px-7 py-20 sm:px-12 sm:py-28 lg:px-20">
         <div className="mx-auto max-w-[1450px]">
           <div className="grid gap-12 lg:grid-cols-[0.85fr_1.15fr]">
