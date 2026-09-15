@@ -11,7 +11,7 @@ type ShopProductLink = {
 };
 
 type CollectionDefinition = {
-  id: "body" | "bath" | "recovery" | "skin-oils";
+  id: "body" | "bath" | "recovery" | "skin";
   name: string;
   tagline: string;
   description: string;
@@ -60,7 +60,7 @@ const collectionDefinitions: CollectionDefinition[] = [
     legacyProducts: ["Bush Relief", "Misty Glen"],
   },
  {
-  id: "skin-oils",
+  id: "skin",
   name: "Skin",
   tagline: "Simple care. No ten-step routine.",
   description:
@@ -117,17 +117,19 @@ function getCollectionId(category: string | null): CollectionDefinition["id"] {
     return "bath";
   }
 
-  if (
-    value.includes("lip balm") ||
-    value === "skin oils" ||
-    value === "skin oil" ||
-    value.includes("face oil") ||
-    value.includes("beard oil") ||
-    value.includes("face & beard") ||
-    value.includes("face and beard")
-  ) {
-    return "skin-oils";
-  }
+ if (
+  value.includes("lip balm") ||
+  value === "skin oils" ||
+  value === "skin oil" ||
+  value.includes("face oil") ||
+  value.includes("beard oil") ||
+  value.includes("face & beard") ||
+  value.includes("face and beard") ||
+  value.includes("shimmer oil") ||
+  value.includes("body oil")
+) {
+  return "skin";
+}
 
   if (
     value === "recovery" ||
@@ -138,15 +140,13 @@ function getCollectionId(category: string | null): CollectionDefinition["id"] {
   }
 
   if (
-    value.includes("whipped soap") ||
-    value.includes("whipped body soap") ||
-    value.includes("shimmer oil") ||
-    value.includes("body oil") ||
-    value.includes("scrub") ||
-    value.includes("buff bar")
-  ) {
-    return "body";
-  }
+  value.includes("whipped soap") ||
+  value.includes("whipped body soap") ||
+  value.includes("scrub") ||
+  value.includes("buff bar")
+) {
+  return "body";
+}
 
   return "body";
 }

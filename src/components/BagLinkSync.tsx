@@ -59,15 +59,24 @@ export default function BagLinkSync() {
       document
         .querySelectorAll<HTMLAnchorElement>('a[href="#cart"], a[href="/bag"]')
         .forEach((link) => {
-          const label = Array.from(link.querySelectorAll("span")).find((span) =>
-            span.textContent?.trim().startsWith("Bag (")
-          );
+          const label = Array.from(link.querySelectorAll("span")).find((span) => {
+  const text = span.textContent?.trim() ?? "";
+  return text === "Bag" || text.startsWith("Bag (");
+});
 
-          if (!label) return;
+if (link.getAttribute("href") !== "/bag") {
+  link.setAttribute("href", "/bag");
+}
 
-          if (link.getAttribute("href") !== "/bag") link.setAttribute("href", "/bag");
-          const nextText = `Bag (${count})`;
-          if (label.textContent !== nextText) label.textContent = nextText;
+const nextText = `Bag (${count})`;
+
+if (label) {
+  if (label.textContent !== nextText) {
+    label.textContent = nextText;
+  }
+} else if (link.textContent?.trim() === "Bag") {
+  link.textContent = nextText;
+}
         });
 
       Array.from(document.querySelectorAll<HTMLSpanElement>("nav span"))

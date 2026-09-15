@@ -35,16 +35,19 @@ function getCollectionHref(category: string | null) {
     return "/shop#recovery";
   }
 
-  if (
-    value === "skin oils" ||
-    value === "skin oil" ||
-    value.includes("face oil") ||
-    value.includes("beard oil") ||
-    value.includes("face & beard") ||
-    value.includes("face and beard")
-  ) {
-    return "/shop#skin-oils";
-  }
+ if (
+  value.includes("lip balm") ||
+  value === "skin oils" ||
+  value === "skin oil" ||
+  value.includes("face oil") ||
+  value.includes("beard oil") ||
+  value.includes("face & beard") ||
+  value.includes("face and beard") ||
+  value.includes("shimmer oil") ||
+  value.includes("body oil")
+) {
+  return "/shop#skin-oils";
+}
 
   return "/shop#body";
 }
@@ -217,11 +220,11 @@ export default async function StoreProductPage({
             <span className="h-8 w-px bg-[#243f35]/30" />
 
             <Link
-              href="/bag"
-              className="transition-opacity hover:opacity-60"
-            >
-              Bag
-            </Link>
+  href="/bag"
+  className="transition-opacity hover:opacity-60"
+>
+  <span>Bag</span>
+</Link>
           </nav>
 
           <Link
