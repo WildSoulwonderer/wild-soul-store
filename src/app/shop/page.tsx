@@ -61,7 +61,7 @@ const collectionDefinitions: CollectionDefinition[] = [
   },
  {
   id: "skin-oils",
-  name: "Face",
+  name: "Skin",
   tagline: "Simple care. No ten-step routine.",
   description:
     "Botanical care for your face and lips, made to nourish, soften and glow without making life complicated.",
