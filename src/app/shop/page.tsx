@@ -62,7 +62,7 @@ const collectionDefinitions: CollectionDefinition[] = [
     imageAlt: "Wild Soul recovery balm on weathered timber in an Australian setting",
     legacyProducts: ["Bush Relief", "Misty Glen"],
   },
-  {
+ {
   id: "skin-oils",
   name: "Face",
   tagline: "Simple care. No ten-step routine.",
@@ -120,11 +120,8 @@ function getCollectionId(category: string | null): CollectionDefinition["id"] {
     return "bath";
   }
 
-  if (value === "recovery" || value.includes("recovery") || value.includes("balm")) {
-    return "recovery";
-  }
-
   if (
+    value.includes("lip balm") ||
     value === "skin oils" ||
     value === "skin oil" ||
     value.includes("face oil") ||
@@ -133,6 +130,25 @@ function getCollectionId(category: string | null): CollectionDefinition["id"] {
     value.includes("face and beard")
   ) {
     return "skin-oils";
+  }
+
+  if (
+    value === "recovery" ||
+    value.includes("recovery") ||
+    value.includes("recovery balm")
+  ) {
+    return "recovery";
+  }
+
+  if (
+    value.includes("whipped soap") ||
+    value.includes("whipped body soap") ||
+    value.includes("shimmer oil") ||
+    value.includes("body oil") ||
+    value.includes("scrub") ||
+    value.includes("buff bar")
+  ) {
+    return "body";
   }
 
   return "body";
