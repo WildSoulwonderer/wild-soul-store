@@ -8,17 +8,24 @@ type CheckoutItem = {
 };
 
 type SquareLineItem = {
-  name?: string;
   quantity: string;
-  catalog_object_id?: string;
-  base_price_money?: {
-    amount: number;
-    currency: "AUD";
-  };
+  catalog_object_id: string;
 };
 
 const SQUARE_CATALOG_VARIATIONS: Record<string, string> = {
   "wild-renewal": "ASJRSUEPKYDWATVEF2SFZESQ",
+  "sunlit-bloom": "OCEASGEDMDYYI5VEXMMPKPDP",
+  "desert-calm": "L454ZXTHGK5IJJH4JRTC2OWP",
+  "ocean-drift": "5SN4KQOC4WLO36GF7NB4APBB",
+  "first-light": "FP4YZ3VQVOZMGIB52XPCRQAM",
+  "highland-mist": "KHTJ2B2KX2BPKG4AARLCBEGT",
+  "highland-recovery": "RX5ZL7GIZXH65HXQHTQRMXQN",
+  "petal-plum": "SCQZ3CWRXO22OUZ3JPWLJEES",
+  ironwood: "SDXISJK3SEG54QTINREXQTD5",
+  "red-dust": "PNILPFCYUUCHVC6W4WPZLJEK",
+  "golden-grove": "SC6G5MDOO3C6KEMKBJQD3BEY",
+  "bush-relief": "F2SXNYL7PFATONEZGZBINWVV",
+  "misty-glen": "7FB3P3GNVHSGOM5A4IQV2MAC",
 };
 
 function getSquareBaseUrl() {
@@ -62,29 +69,23 @@ export async function POST(request: Request) {
     const resolvedItems = items.map((item) => {
       const product = products[item.id as keyof typeof products];
       if (!product) throw new Error(`Unknown product: ${item.id}`);
-      return { id: item.id, product, quantity: item.quantity };
+
+      const catalogObjectId = SQUARE_CATALOG_VARIATIONS[item.id];
+      if (!catalogObjectId) {
+        throw new Error(`Product is not connected to Square: ${item.id}`);
+      }
+
+      return {
+        quantity: item.quantity,
+        catalogObjectId,
+      };
     });
 
     const lineItems: SquareLineItem[] = resolvedItems.map(
-      ({ id, product, quantity }) => {
-        const catalogObjectId = SQUARE_CATALOG_VARIATIONS[id];
-
-        if (catalogObjectId) {
-          return {
-            quantity: String(quantity),
-            catalog_object_id: catalogObjectId,
-          };
-        }
-
-        return {
-          name: product.name,
-          quantity: String(quantity),
-          base_price_money: {
-            amount: Math.round(product.price * 100),
-            currency: "AUD",
-          },
-        };
-      }
+      ({ catalogObjectId, quantity }) => ({
+        quantity: String(quantity),
+        catalog_object_id: catalogObjectId,
+      })
     );
 
     const response = await fetch(
