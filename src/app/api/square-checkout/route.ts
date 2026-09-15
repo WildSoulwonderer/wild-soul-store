@@ -8,12 +8,17 @@ type CheckoutItem = {
 };
 
 type SquareLineItem = {
-  name: string;
+  name?: string;
   quantity: string;
-  base_price_money: {
+  catalog_object_id?: string;
+  base_price_money?: {
     amount: number;
     currency: "AUD";
   };
+};
+
+const SQUARE_CATALOG_VARIATIONS: Record<string, string> = {
+  "wild-renewal": "ASJRSUEPKYDWATVEF2SFZESQ",
 };
 
 function getSquareBaseUrl() {
@@ -57,18 +62,29 @@ export async function POST(request: Request) {
     const resolvedItems = items.map((item) => {
       const product = products[item.id as keyof typeof products];
       if (!product) throw new Error(`Unknown product: ${item.id}`);
-      return { product, quantity: item.quantity };
+      return { id: item.id, product, quantity: item.quantity };
     });
 
     const lineItems: SquareLineItem[] = resolvedItems.map(
-      ({ product, quantity }) => ({
-        name: product.name,
-        quantity: String(quantity),
-        base_price_money: {
-          amount: Math.round(product.price * 100),
-          currency: "AUD",
-        },
-      })
+      ({ id, product, quantity }) => {
+        const catalogObjectId = SQUARE_CATALOG_VARIATIONS[id];
+
+        if (catalogObjectId) {
+          return {
+            quantity: String(quantity),
+            catalog_object_id: catalogObjectId,
+          };
+        }
+
+        return {
+          name: product.name,
+          quantity: String(quantity),
+          base_price_money: {
+            amount: Math.round(product.price * 100),
+            currency: "AUD",
+          },
+        };
+      }
     );
 
     const response = await fetch(
