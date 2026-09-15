@@ -153,20 +153,38 @@ function getCollectionId(category: string | null): CollectionDefinition["id"] {
 
   return "body";
 }
+const productTypeLabels: Record<string, string> = {
+  "Wild Renewal": "Coffee & Sugar Scrub",
+  "Sunlit Bloom": "Sugar Scrub",
+  "Desert Calm": "Salt Scrub",
+  "Ocean Drift": "Salt Scrub",
+  "First Light": "Buff Bar",
+  "Highland Mist": "Buff Bar",
+  "Highland Recovery": "Bath Soak",
+  "Petal & Plum": "Bath Soak",
+  "Bush Relief": "Recovery Balm",
+  "Misty Glen": "Recovery Balm",
+  "Ironwood": "Face & Beard Oil",
+  "Red Dust": "Face & Beard Oil",
+  "Golden Grove": "Face & Beard Oil",
+};
 
 function buildCollectionProducts(
   definition: CollectionDefinition,
   liveProducts: StoreProduct[],
 ): ShopProductLink[] {
   const products: ShopProductLink[] = definition.legacyProducts.map((name) => ({
-    name,
+    name: productTypeLabels[name]
+      ? `${name} — ${productTypeLabels[name]}`
+      : name,
     href: legacyProductLinks[name] ?? null,
   }));
 
   const seen = new Set(
-    products.map((product) =>
-      product.href ? `href:${product.href}` : `name:${product.name.toLowerCase()}`,
-    ),
+    definition.legacyProducts.map((name) => {
+      const href = legacyProductLinks[name];
+      return href ? `href:${href}` : `name:${name.toLowerCase()}`;
+    }),
   );
 
   for (const product of liveProducts) {
@@ -178,7 +196,13 @@ function buildCollectionProducts(
 
     if (seen.has(hrefKey) || seen.has(nameKey)) continue;
 
-    products.push({ name: product.name, href });
+    products.push({
+      name: product.category
+        ? `${product.name} — ${product.category}`
+        : product.name,
+      href,
+    });
+
     seen.add(hrefKey);
     seen.add(nameKey);
   }
