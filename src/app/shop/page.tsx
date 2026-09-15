@@ -63,15 +63,15 @@ const collectionDefinitions: CollectionDefinition[] = [
     legacyProducts: ["Bush Relief", "Misty Glen"],
   },
   {
-    id: "skin-oils",
-    name: "Skin Oils",
-    tagline: "Simple care. No ten-step routine.",
-    description:
-      "Botanical oils for face, body and beards, made to nourish, soften and give skin a little glow without making life complicated.",
-    image: "/images/wild-soul-skin-oils-v3.png",
-    imageAlt: "Wild Soul botanical skin oil in warm morning light",
-    legacyProducts: ["Ironwood", "Red Dust", "Golden Grove"],
-  },
+  id: "skin-oils",
+  name: "Face",
+  tagline: "Simple care. No ten-step routine.",
+  description:
+    "Botanical care for your face and lips, made to nourish, soften and glow without making life complicated.",
+  image: "/images/wild-soul-face.png",
+  imageAlt: "Wild Soul botanical face oil and lip balm in warm morning light",
+  legacyProducts: ["Ironwood", "Red Dust", "Golden Grove"],
+},
 ];
 
 const comingSoon = [
