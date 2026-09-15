@@ -26,7 +26,7 @@ const collectionDefinitions: CollectionDefinition[] = [
     name: "Body",
     tagline: "Made for skin that’s lived a little.",
     description:
-      "Scrubs, whipped soaps, lip care, shimmer oils, buff bars and everyday body care made for real skin, real routines and whatever five minutes you can steal.",
+      "Scrubs, whipped soaps, buff bars and everyday body care made for real skin, real routines and whatever five minutes you can steal.",
     image: "/images/wild-soul-body.png",
     imageAlt: "Wild Soul body care products in a warm relaxed bathroom setting",
     legacyProducts: [
@@ -35,9 +35,6 @@ const collectionDefinitions: CollectionDefinition[] = [
       "Desert Calm",
       "Ocean Drift",
       "Bush Bloom",
-      "Outback Spice",
-      "Wild Glow",
-      "Morning Ember",
       "First Light",
       "Highland Mist",
     ],
