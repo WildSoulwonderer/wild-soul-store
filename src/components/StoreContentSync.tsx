@@ -87,7 +87,7 @@ function renderComingSoon(items: StorefrontContent[]) {
   if (!section || items.length === 0) return;
 
   const existingGrid = Array.from(section.querySelectorAll<HTMLDivElement>("div")).find((div) =>
-    div.className.includes("grid") && div.querySelector("article")
+    div.className.includes("sm:grid-cols-2") && div.querySelector("article")
   );
 
   if (!existingGrid) return;
