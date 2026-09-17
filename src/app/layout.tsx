@@ -5,6 +5,7 @@ import { BagProvider } from "@/context/BagContext";
 import BagLinkSync from "@/components/BagLinkSync";
 import MobileStoreNav from "@/components/MobileStoreNav";
 import StoreContentSync from "@/components/StoreContentSync";
+import GiftCardPlacement from "@/components/GiftCardPlacement";
 
 const fraunces = Fraunces({
   variable: "--font-wild-serif",
@@ -38,6 +39,7 @@ export default function RootLayout({
           <BagLinkSync />
           <MobileStoreNav />
           <StoreContentSync />
+          <GiftCardPlacement />
           {children}
         </BagProvider>
       </body>
