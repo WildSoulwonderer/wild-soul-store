@@ -1,0 +1,2 @@
+Wild Soul gift card storefront route: /shop/gift-card
+Square checkout is linked from that route.
