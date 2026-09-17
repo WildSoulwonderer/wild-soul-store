@@ -94,6 +94,52 @@ function renderComingSoon(items: StorefrontContent[]) {
   existingGrid.replaceChildren(...items.map((item) => makeCard(item)));
 }
 
+function renderGiftCards() {
+  const comingSoonSection = findComingSoonSection();
+  if (!comingSoonSection) return;
+
+  document.getElementById("wild-soul-gift-cards")?.remove();
+
+  const section = document.createElement("section");
+  section.id = "wild-soul-gift-cards";
+  section.className = "bg-[#f4eee4] px-7 py-20 sm:px-12 sm:py-28 lg:px-20";
+
+  const wrapper = document.createElement("div");
+  wrapper.className = "mx-auto grid max-w-[1450px] gap-10 border-y border-[#243f35]/15 py-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:py-20";
+
+  const headingBlock = document.createElement("div");
+  const eyebrow = document.createElement("p");
+  eyebrow.className = "mb-5 text-xs font-semibold uppercase tracking-[0.3em] text-[#9a6545]";
+  eyebrow.textContent = "Wild Soul Gift Cards";
+
+  const heading = document.createElement("h2");
+  heading.className = "text-[clamp(3.2rem,6vw,6.5rem)] font-normal leading-[0.9] text-[#243f35]";
+  heading.style.fontFamily = serif;
+  heading.append("Give them a little", document.createElement("br"));
+  const italic = document.createElement("span");
+  italic.className = "italic text-[#704a35]";
+  italic.textContent = "Wild Soul.";
+  heading.appendChild(italic);
+  headingBlock.append(eyebrow, heading);
+
+  const content = document.createElement("div");
+  content.className = "max-w-[700px]";
+  const body = document.createElement("p");
+  body.className = "text-lg leading-9 text-[#5f574f]";
+  body.textContent = "Not sure which scent, balm or piece they'll love most? Let them choose. Wild Soul eGift Cards are delivered digitally and can be purchased in a value that suits you.";
+
+  const link = document.createElement("a");
+  link.href = "/shop/gift-card";
+  link.className = "mt-8 inline-flex border-b border-[#704a35] pb-2 text-xl text-[#704a35] transition-opacity hover:opacity-60";
+  link.style.fontFamily = serif;
+  link.textContent = "Shop Gift Cards →";
+
+  content.append(body, link);
+  wrapper.append(headingBlock, content);
+  section.appendChild(wrapper);
+  comingSoonSection.parentNode?.insertBefore(section, comingSoonSection);
+}
+
 function renderNews(items: StorefrontContent[]) {
   const comingSoonSection = findComingSoonSection();
   if (!comingSoonSection || items.length === 0) return;
@@ -148,6 +194,7 @@ export default function StoreContentSync() {
 
     let cancelled = false;
 
+    renderGiftCards();
     renderNews(fallbackNews);
     renderComingSoon(fallbackComingSoon);
 
