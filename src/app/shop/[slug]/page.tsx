@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AddToBagButton from "@/components/AddToBagButton";
+import NotifyMeForm from "@/components/NotifyMeForm";
 import { getStoreProduct } from "@/lib/store-products";
 
 export const dynamic = "force-dynamic";
@@ -289,13 +290,16 @@ export default async function StoreProductPage({
                 price={Number(product.retail_price ?? 0)}
               />
             ) : (
-              <button
-                type="button"
-                disabled
-                className="mt-10 inline-flex min-h-14 w-full cursor-not-allowed items-center justify-center bg-[#8d938f] px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white sm:w-auto"
-              >
-                Sold Out
-              </button>
+              <div className="mt-10">
+                <button
+                  type="button"
+                  disabled
+                  className="inline-flex min-h-14 w-full cursor-not-allowed items-center justify-center bg-[#8d938f] px-9 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white sm:w-auto"
+                >
+                  Sold Out
+                </button>
+                <NotifyMeForm productId={product.id} />
+              </div>
             )}
           </div>
         </div>
