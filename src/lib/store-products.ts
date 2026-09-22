@@ -10,6 +10,7 @@ export type StoreProduct = {
   photo_url: string | null;
   secondary_photo_url: string | null;
   ingredients: string | null;
+  available_to_sell: boolean;
 };
 
 export async function getStoreProducts(): Promise<StoreProduct[]> {
