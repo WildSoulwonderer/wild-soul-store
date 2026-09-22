@@ -391,6 +391,34 @@ export default async function StoreProductPage({
         </div>
       </section>
 
+      {product.ingredients && (
+        <section className="border-y border-[#243f35]/10 bg-[#f8f4ec] px-7 py-20 sm:px-12 sm:py-24 lg:px-20">
+          <div className="mx-auto grid max-w-[1450px] gap-10 lg:grid-cols-[0.7fr_1.3fr]">
+            <div>
+              <p className="mb-5 text-sm font-semibold uppercase tracking-[0.3em] text-[#9a6545]">
+                What&apos;s Inside
+              </p>
+              <h2
+                className="text-[clamp(3rem,4.5vw,4.8rem)] font-normal leading-[0.95] text-[#243f35]"
+                style={serifFont}
+              >
+                Ingredients.
+                <br />
+                <span className="italic text-[#704a35]">Nothing hidden.</span>
+              </h2>
+            </div>
+            <div className="max-w-[800px]">
+              <p className="whitespace-pre-line text-lg leading-8 text-[#5f574f] sm:text-xl sm:leading-9">
+                {product.ingredients}
+              </p>
+              <p className="mt-7 border-t border-[#243f35]/15 pt-6 text-sm leading-7 text-[#5f574f]/75">
+                Please check the ingredient list before use if you have known sensitivities or allergies.
+              </p>
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="bg-[#e8e1d5] px-7 py-24 sm:px-12 sm:py-32 lg:px-20">
         <div className="mx-auto grid max-w-[1450px] gap-14 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
           <div>
