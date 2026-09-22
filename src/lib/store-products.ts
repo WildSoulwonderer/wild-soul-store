@@ -9,6 +9,7 @@ export type StoreProduct = {
   current_stock: number | null;
   photo_url: string | null;
   secondary_photo_url: string | null;
+  ingredients: string | null;
 };
 
 export async function getStoreProducts(): Promise<StoreProduct[]> {
