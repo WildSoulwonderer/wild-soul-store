@@ -122,7 +122,7 @@ export default async function StoreProductPage({
     notFound();
   }
 
-  const inStock = (product.current_stock ?? 0) > 0;
+  const availableToSell = product.available_to_sell !== false;
   const collectionHref = getCollectionHref(product.category);
   const [useHeadingOne, useHeadingTwo] = getUseHeading(
     product.category,
@@ -282,7 +282,7 @@ export default async function StoreProductPage({
               ${Number(product.retail_price ?? 0).toFixed(2)}
             </p>
 
-            {inStock ? (
+            {availableToSell ? (
               <AddToBagButton
                 id={product.store_slug}
                 name={product.name}
@@ -402,9 +402,9 @@ export default async function StoreProductPage({
                 className="text-[clamp(3rem,4.5vw,4.8rem)] font-normal leading-[0.95] text-[#243f35]"
                 style={serifFont}
               >
-                Ingredients.
+                Simple ingredients.
                 <br />
-                <span className="italic text-[#704a35]">Nothing hidden.</span>
+                <span className="italic text-[#704a35]">Made by hand.</span>
               </h2>
             </div>
             <div className="max-w-[800px]">
