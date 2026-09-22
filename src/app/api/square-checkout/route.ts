@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import { products } from "@/lib/products";
+import { getStoreProducts } from "@/lib/store-products";
 
 type CheckoutItem = {
   id: string;
@@ -63,6 +64,33 @@ export async function POST(request: Request) {
       return NextResponse.json(
         { error: "Invalid product quantity." },
         { status: 400 }
+      );
+    }
+
+    const storeProducts = await getStoreProducts();
+    if (storeProducts.length === 0) {
+      return NextResponse.json(
+        { error: "We could not confirm product availability. Please try again." },
+        { status: 503 }
+      );
+    }
+
+    const storeProductsBySlug = new Map(
+      storeProducts.map((product) => [product.store_slug, product])
+    );
+
+    const unavailableItems = items.filter((item) => {
+      const liveProduct = storeProductsBySlug.get(item.id);
+      return !liveProduct || liveProduct.available_to_sell === false;
+    });
+
+    if (unavailableItems.length > 0) {
+      return NextResponse.json(
+        {
+          error: "One or more products in your bag are no longer available.",
+          unavailableItemIds: unavailableItems.map((item) => item.id),
+        },
+        { status: 409 }
       );
     }
 
