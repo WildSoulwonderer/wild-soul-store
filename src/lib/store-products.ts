@@ -11,6 +11,8 @@ export type StoreProduct = {
   secondary_photo_url: string | null;
   ingredients: string | null;
   available_to_sell: boolean;
+  shipping_weight_grams: number | null;
+  square_variation_id: string | null;
 };
 
 export async function getStoreProducts(): Promise<StoreProduct[]> {
