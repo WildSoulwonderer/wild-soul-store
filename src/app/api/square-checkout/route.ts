@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { randomUUID } from "crypto";
 import { getStoreProducts } from "@/lib/store-products";
+import { getParcelPostShippingCents } from "@/lib/shipping";
 
 type CheckoutItem = {
   id: string;
@@ -79,6 +80,19 @@ export async function POST(request: Request) {
       );
     }
 
+    const totalWeightGrams = items.reduce((total, item) => {
+      const product = storeProductsBySlug.get(item.id);
+      const weight = Number(product?.shipping_weight_grams);
+
+      if (!product || !Number.isFinite(weight) || weight <= 0) {
+        throw new Error(`Product is missing a valid shipping weight: ${item.id}`);
+      }
+
+      return total + weight * item.quantity;
+    }, 0);
+
+    const shippingCents = getParcelPostShippingCents(totalWeightGrams);
+
     const lineItems: SquareLineItem[] = items.map((item) => {
       const product = storeProductsBySlug.get(item.id);
       if (!product || product.retail_price == null) {
@@ -113,6 +127,13 @@ export async function POST(request: Request) {
           },
           checkout_options: {
             ask_for_shipping_address: true,
+            shipping_fee: {
+              name: "Parcel Post",
+              charge: {
+                amount: shippingCents,
+                currency: "AUD",
+              },
+            },
           },
           pre_populated_data: {
             buyer_address: {
