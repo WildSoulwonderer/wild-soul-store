@@ -82,11 +82,31 @@ const legacyProductLinks: Record<string, string> = {
   "Golden Grove": "/shop/golden-grove",
 };
 
-function getCollectionId(category: string | null): CollectionDefinition["id"] {
-  const value = (category ?? "").trim().toLowerCase();
-  if (value === "bath" || value.includes("bath") || value.includes("soak")) return "bath";
-  if (value.includes("lip balm") || value === "skin oils" || value === "skin oil" || value.includes("face oil") || value.includes("beard oil") || value.includes("face & beard") || value.includes("face and beard") || value.includes("shimmer oil") || value.includes("body oil")) return "skin";
-  if (value === "recovery" || value.includes("recovery") || value.includes("recovery balm")) return "recovery";
+function getCollectionId(product: StoreProduct): CollectionDefinition["id"] {
+  const category = (product.category ?? "").trim().toLowerCase();
+  const name = product.name.trim().toLowerCase();
+  const value = `${category} ${name}`;
+
+  if (category === "bath" || value.includes("bath soak") || category.includes("soak")) return "bath";
+  if (
+    category.includes("lip balm") ||
+    category === "skin oils" ||
+    category === "skin oil" ||
+    category === "oil" ||
+    value.includes("face oil") ||
+    value.includes("beard oil") ||
+    value.includes("face & beard") ||
+    value.includes("face and beard") ||
+    value.includes("shimmer oil")
+  ) return "skin";
+  if (
+    category === "recovery" ||
+    category === "balm" ||
+    category.includes("recovery") ||
+    value.includes("recovery balm") ||
+    name === "bush relief" ||
+    name === "misty glen"
+  ) return "recovery";
   return "body";
 }
 
@@ -107,19 +127,22 @@ function buildCollectionProducts(definition: CollectionDefinition, liveProducts:
     name: productTypeLabels[name] ? `${name} — ${productTypeLabels[name]}` : name,
     href: legacyProductLinks[name] ?? null,
   }));
-  const seen = new Set(definition.legacyProducts.map((name) => {
+  const seen = new Set<string>();
+  for (const name of definition.legacyProducts) {
+    seen.add(`name:${name.toLowerCase()}`);
     const href = legacyProductLinks[name];
-    return href ? `href:${href}` : `name:${name.toLowerCase()}`;
-  }));
+    if (href) seen.add(`href:${href}`);
+  }
 
   for (const product of liveProducts) {
     if (isGiftCard(product)) continue;
-    if (getCollectionId(product.category) !== definition.id) continue;
+    if (getCollectionId(product) !== definition.id) continue;
     const href = `/shop/${product.store_slug}`;
     const hrefKey = `href:${href}`;
     const nameKey = `name:${product.name.toLowerCase()}`;
     if (seen.has(hrefKey) || seen.has(nameKey)) continue;
-    products.push({ name: product.category ? `${product.name} — ${product.category}` : product.name, href });
+    const typeLabel = productTypeLabels[product.name] ?? product.category;
+    products.push({ name: typeLabel ? `${product.name} — ${typeLabel}` : product.name, href });
     seen.add(hrefKey);
     seen.add(nameKey);
   }
