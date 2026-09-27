@@ -396,14 +396,14 @@ export default async function StoreProductPage({
       </section>
 
       {product.ingredients && (
-        <section className="border-y border-[#243f35]/10 bg-[#f8f4ec] px-7 py-20 sm:px-12 sm:py-24 lg:px-20">
-          <div className="mx-auto grid max-w-[1450px] gap-10 lg:grid-cols-[0.7fr_1.3fr]">
+        <section className="bg-[#e8e1d5] px-7 py-24 sm:px-12 sm:py-32 lg:px-20">
+          <div className="mx-auto grid max-w-[1450px] gap-14 lg:grid-cols-[0.8fr_1.2fr]">
             <div>
               <p className="mb-5 text-sm font-semibold uppercase tracking-[0.3em] text-[#9a6545]">
                 What&apos;s Inside
               </p>
               <h2
-                className="text-[clamp(3rem,4.5vw,4.8rem)] font-normal leading-[0.95] text-[#243f35]"
+                className="text-[clamp(3.4rem,5vw,5.5rem)] font-normal leading-[0.92] text-[#243f35]"
                 style={serifFont}
               >
                 Simple ingredients.
@@ -411,11 +411,11 @@ export default async function StoreProductPage({
                 <span className="italic text-[#704a35]">Made by hand.</span>
               </h2>
             </div>
-            <div className="max-w-[800px]">
-              <p className="whitespace-pre-line text-lg leading-8 text-[#5f574f] sm:text-xl sm:leading-9">
+            <div className="max-w-[760px]">
+              <p className="whitespace-pre-line text-[1.35rem] leading-9 text-[#5f574f]">
                 {product.ingredients}
               </p>
-              <p className="mt-7 border-t border-[#243f35]/15 pt-6 text-sm leading-7 text-[#5f574f]/75">
+              <p className="mt-10 border-t border-[#243f35]/15 pt-8 text-lg leading-8 text-[#5f574f]/80">
                 Please check the ingredient list before use if you have known sensitivities or allergies.
               </p>
             </div>
