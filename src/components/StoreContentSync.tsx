@@ -186,17 +186,61 @@ function renderNews(items: StorefrontContent[]) {
   comingSoonSection.parentNode?.insertBefore(section, comingSoonSection);
 }
 
+function renderHomeNews(items: StorefrontContent[]) {
+  const host = document.getElementById("home-wild-soul-news-items");
+  if (!host || items.length === 0) return;
+
+  const latest = [...items]
+    .sort((a, b) => a.display_order - b.display_order || a.id - b.id)
+    .slice(0, 3);
+
+  host.replaceChildren();
+
+  latest.forEach((item, index) => {
+    const article = document.createElement("article");
+    article.className = index === 0
+      ? "pb-7"
+      : "border-t border-[#243f35]/15 py-7";
+
+    const label = document.createElement("p");
+    label.className = "text-[0.65rem] font-semibold uppercase tracking-[0.22em] text-[#9a6545]";
+    label.textContent = item.label || "Wild Soul";
+
+    const title = document.createElement("h3");
+    title.className = index === 0
+      ? "mt-3 text-3xl font-normal text-[#243f35] sm:text-4xl"
+      : "mt-3 text-2xl font-normal text-[#243f35]";
+    title.style.fontFamily = serif;
+    title.textContent = item.title;
+
+    article.append(label, title);
+
+    if (item.body) {
+      const body = document.createElement("p");
+      body.className = "mt-3 max-w-xl text-sm leading-7 text-[#5f574f]";
+      body.textContent = item.body;
+      article.appendChild(body);
+    }
+
+    host.appendChild(article);
+  });
+}
+
 export default function StoreContentSync() {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (pathname !== "/shop") return;
+    if (pathname !== "/shop" && pathname !== "/") return;
 
     let cancelled = false;
 
-    renderGiftCards();
-    renderNews(fallbackNews);
-    renderComingSoon(fallbackComingSoon);
+    if (pathname === "/") {
+      renderHomeNews(fallbackNews);
+    } else {
+      renderGiftCards();
+      renderNews(fallbackNews);
+      renderComingSoon(fallbackComingSoon);
+    }
 
     async function sync() {
       const content = await loadContent();
@@ -205,8 +249,12 @@ export default function StoreContentSync() {
       const news = content.filter((item) => item.section === "news");
       const comingSoon = content.filter((item) => item.section === "coming_soon");
 
-      if (news.length > 0) renderNews(news);
-      if (comingSoon.length > 0) renderComingSoon(comingSoon);
+      if (pathname === "/") {
+        if (news.length > 0) renderHomeNews(news);
+      } else {
+        if (news.length > 0) renderNews(news);
+        if (comingSoon.length > 0) renderComingSoon(comingSoon);
+      }
     }
 
     const timer = window.setTimeout(() => void sync(), 50);
