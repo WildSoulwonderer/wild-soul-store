@@ -202,9 +202,9 @@ export default function Home() {
       </section>
 
       {/* HOMEPAGE EDITORIAL GRID */}
-      <section className="bg-[#f4eee4] px-6 py-20 sm:px-10 sm:py-24 lg:px-12">
-        <div className="mx-auto grid max-w-[1450px] overflow-hidden border border-[#243f35]/15 lg:grid-cols-2">
-          <div id="home-wild-soul-news" className="border-b border-[#243f35]/15 p-8 sm:p-12 lg:border-b-0 lg:border-r lg:p-14">
+      <section className="bg-[#f4eee4] px-5 py-14 sm:px-8 sm:py-18 lg:px-10 lg:py-20">
+        <div className="mx-auto grid w-full max-w-[1600px] overflow-hidden border border-[#243f35]/15 lg:grid-cols-[1.15fr_0.85fr]">
+          <div id="home-wild-soul-news" className="border-b border-[#243f35]/15 p-8 sm:p-12 lg:border-b-0 lg:border-r lg:p-16 xl:p-20">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--wild-earth)]">Wild Soul News</p>
             <h2 className="mt-5 text-[clamp(3.2rem,5vw,5.6rem)] font-normal leading-[0.9] text-[var(--wild-forest)]" style={serifFont}>
               Fresh from<br /><span className="italic text-[#704a35]">the Wild Soul bench.</span>
@@ -214,12 +214,12 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="bg-[#eee5d8] p-8 sm:p-12 lg:p-14">
+          <div className="bg-[#eee5d8] p-8 sm:p-12 lg:p-16 xl:p-20">
             <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--wild-earth)]">Wild Soul Favourites</p>
             <h2 className="mt-5 text-[clamp(3rem,4.5vw,5rem)] font-normal leading-[0.92] text-[var(--wild-forest)]" style={serifFont}>
               Already finding<br /><span className="italic text-[#704a35]">their people.</span>
             </h2>
-            <div className="mt-10 grid gap-5 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3">
+            <div className="mt-10 grid gap-6 sm:grid-cols-3 lg:grid-cols-1 2xl:grid-cols-3">
               {[
                 ["Bush Relief", "Recovery Balm", "$24.95", "/shop#bush-relief"],
                 ["Misty Glen", "Recovery Balm", "$24.95", "/shop#misty-glen"],
